@@ -1,0 +1,1084 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>IUB Dashboard</title>
+    <link rel="icon" type="image/png" href="logo.png" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+    />
+  </head>
+  <style>
+    :root {
+      --bg: #f4fbff;
+      --mustard: #222c72;
+      --navy: #222c72;
+      --card-bg: #ffffff;
+      --border: #e0ab1d;
+      --shadow: 0 10px 18px rgba(23, 38, 83, 0.06);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: "Poppins", sans-serif;
+    }
+
+    /* Full screen centering */
+body {
+  background: var(--bg);
+  margin: 0;
+  padding: 0;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Main container */
+.main {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 5vw;
+  width: 90vw;
+  max-width: 1200px;
+  min-width: 300px;
+  height: auto;
+}
+
+/* Shared section styles */
+.left-section,
+.right-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  flex: 1 1 300px; /* auto shrink/grow with min width */
+  min-width: 250px;
+  max-width: 600px;
+  height: auto;
+  padding: 5vh 2vw;
+}
+
+/* Optional: Specific left-section tweaks */
+.left-section {
+gap: 30px;
+}
+
+.right-section {
+  gap: 30px;
+}
+
+
+
+
+  /* corner buttone */
+    .corner-btn {
+      position: fixed;
+      top: 20px;
+      padding: 10px 16px;
+      border-radius: 12px;
+      background: var(--mustard);
+      color: #ffffff;
+      font-weight: 700;
+      border: none;
+      cursor: pointer;
+      z-index: 999;
+      transition: transform 0.2s ease;
+    }
+    .corner-btn:hover {
+      transform: translateY(-2px);
+    }
+    .left {
+      left: 20px;
+    }
+    .right {
+      right: 20px;
+    }
+
+    header {
+      position: absolute;
+      top: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      text-align: center;
+      z-index: 1;
+    }
+    .header-row {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+    }
+    .logo {
+      width: 70px;
+      height: 70px;
+      border-radius: 12px;
+    }
+    .header-row h1 {
+      font-size: 24px;
+      font-weight: 700;
+      color: black;
+    }
+
+
+
+
+    /* google app  */
+#googleBtn {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      padding: 10px 16px;
+      color: white;
+
+      border: none;
+      border-radius: 12px;
+      cursor: pointer;
+      z-index: 999;
+    }
+
+    #googleModal {
+      display: none;
+      position: fixed;
+      top: 80px;
+      right: 20px;
+      width: 320px;
+      height: calc(100vh - 200px);
+      background: #fff;
+      border-radius: 12px;
+      box-shadow: 0 0 12px rgba(0,0,0,0.2);
+      padding: 20px;
+      z-index: 1000;
+      overflow: hidden;
+    }
+
+    .modal-content {
+      max-height: 100%;
+      overflow-y: auto;
+      overflow-x: hidden;
+      padding-right: 8px;
+      position: relative;
+    }
+
+
+
+
+    .app-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+      margin-top: 10px;
+    }
+
+    .app-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      cursor: pointer;
+      transition: transform 0.2s;
+    }
+
+    .app-item:hover {
+      transform: scale(1.05);
+    }
+
+    .app-item img {
+      width: 40px;
+      height: 40px;
+      margin-bottom: 6px;
+    }
+
+    .app-item p {
+      font-size: 0.75rem;
+      color: #333;
+      text-align: center;
+      margin: 0;
+    }
+
+    .modal-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 12px;
+    }
+
+    .modal-header h3 {
+      font-size: 1rem;
+      color: var(--navy);
+      margin: 0;
+    }
+
+    .modal-close {
+      background: none;
+      border: none;
+      font-size: 1.5rem;
+      line-height: 1;
+      color: var(--navy);
+      cursor: pointer;
+      padding: 0;
+    }
+
+
+    /* AI panel */
+    .ai-panel {
+      position: fixed;
+      top: 0;
+      right: -320px;
+      width: 300px;
+      height: 100vh;
+      background: #ffffff;
+      box-shadow: -10px 0 30px rgba(0, 0, 0, 0.1);
+      padding: 24px 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      transition: right 0.3s ease;
+      z-index: 1001;
+    }
+
+    .ai-panel.open {
+      right: 0;
+    }
+
+    .ai-panel-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .ai-panel-header h3 {
+      margin: 0;
+      color: var(--navy);
+    }
+
+    .ai-panel-buttons {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .ai-panel-btn {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 14px 16px;
+      border-radius: 12px;
+      border: 1px solid var(--border);
+      background: var(--card-bg);
+      cursor: pointer;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+      text-align: left;
+    }
+
+    .ai-panel-btn:hover {
+      transform: translateX(-4px);
+      box-shadow: var(--shadow);
+    }
+
+    .ai-icon {
+      width: 40px;
+      height: 40px;
+      border-radius: 10px;
+      background: #eef2ff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 20px;
+      color: var(--navy);
+    }
+
+    .ai-panel-btn strong {
+      display: block;
+      font-size: 1rem;
+      color: #111;
+    }
+
+    .ai-panel-btn span small {
+      color: #666;
+    }
+
+
+
+
+    .time-row {
+      display: flex;
+      gap: 10px;
+    }
+    .time-box {
+      width: 100px;
+      height: 90px;
+      background: var(--card-bg);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 40px;
+      font-weight: 700;
+      border-radius: 12px;
+      box-shadow: var(--shadow);
+    }
+    .date-box {
+      background: var(--card-bg);
+      padding: 10px 24px;
+      border-radius: 12px;
+      box-shadow: var(--shadow);
+
+    }
+    .weather-row {
+      display: flex;
+      gap: 18px;
+    }
+    .weather-item {
+      background: #222c72;
+      color: #fff;
+      padding: 10px 18px;
+      border-radius: 7px;
+      box-shadow: var(--shadow);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .help-row {
+      display: flex;
+      gap: 20px;
+    }
+    .help-card {
+      background: var(--card-bg);
+      box-shadow: var(--shadow);
+      border: var(--border) 1px solid;
+      border-radius: 16px;
+      width: 160px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 15px 10px;
+      text-align: center;
+      gap: 10px;
+      cursor: pointer;
+      transition: transform 0.3s ease;
+    }
+    .help-card:hover {
+      transform: scale(2.0);
+    }
+    .help-card img {
+      width: 55px;
+      height: 55px;
+    }
+
+    .top-buttons {
+      display: flex;
+      gap: 10px;
+    }
+    .portal-btn {
+      background: var(--navy);
+      color: #fff;
+      border: 2px solid var(--border);
+      border-radius: 10px;
+      padding: 7px 20px;
+      font-weight: 800;
+      cursor: pointer;
+      transition: 0.2s;
+      transition: transform 0.3s ease;
+    }
+    .portal-btn:hover {
+      background: #147d2b;
+      transform: scale(2.0);
+    }
+
+    
+
+   
+
+    /* Serch bar */
+    .search-container {
+      display: flex;
+      width: 100%;
+      max-width: 560px;
+      background: var(--card-bg);
+      border-radius: 10px;
+      box-shadow: var(--shadow);
+      overflow: hidden;
+    }
+    #searchInput {
+      flex: 1;
+      border: none;
+      outline: none;
+      padding: 12px 16px;
+      font-size: 16px;
+      color: #333;
+      font-style: italic;
+    }
+    #voiceBtn {
+      background: none;
+      border: none;
+      color: var(--navy);
+      width: 50px;
+      cursor: pointer;
+    }
+    #searchBtn {
+      background: var(--navy);
+      color: #fff;
+      border: none;
+      width: 50px;
+      cursor: pointer;
+    }
+    #voiceBtn i,
+    #searchBtn i {
+      font-size: 18px;
+    }
+
+
+
+
+    /* slider */
+
+    .carousel-container {
+      position: relative;
+      width: 100%;
+      max-width: 460px;
+    }
+    .carousel-container img {
+      width: 100%;
+      height: auto;
+      border-radius: 14px;
+      object-fit: contain;
+    }
+    .carrow {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 38px;
+      height: 38px;
+      background: #222c72;
+      color: #fff;
+      border: none;
+      border-radius: 50%;
+      cursor: pointer;
+    }
+    #prev {
+      left: -45px;
+    }
+    #next {
+      right: -45px;
+    }
+
+    .dots {
+  display: flex;
+  justify-content: center;
+  margin-top: 10px;
+  gap: 8px;
+}
+
+.dot {
+  width: 10px;
+  height: 10px;
+  background-color: #ccc;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.dot.active {
+  background-color: #222c72;
+}
+
+
+
+
+    footer {
+      position: fixed;
+      bottom: 20px;
+      left: 0;
+      right: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    .footer-btn {
+      background: var(--mustard);
+      color: #fff;
+      border: none;
+      border-radius: 12px;
+      padding: 19px 17px;
+      font-weight: 700;
+      cursor: pointer;
+      position: absolute;
+      bottom: 20px;
+      transition: transform 0.2s ease;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    .footer-btn:hover {
+      transform: translateY(-2px);
+    }
+    footer .left.footer-btn {
+      left: 20px;
+      top: -4px;
+    }
+    footer .right.footer-btn {
+      right: 20px;
+      top: -4px;
+    }
+    .social-footer {
+      display: flex;
+      justify-content: center;
+      gap: 18px;
+      margin: 0 100px;
+    }
+    .social-icon {
+      font-size: 26px;
+      color: var(--navy);
+      cursor: pointer;
+      transition: color 0.3s;
+    }
+    .social-icon:hover {
+      color: var(--mustard);
+    }
+    .social-footer {
+      display: flex;
+      gap: 18px;
+      margin: 0 80px;
+      justify-content: center;
+    }
+
+    .help-centre {
+      color: #222c72;
+      font-weight: 700;
+      font-size: 18px;
+      text-align: left;
+      margin-top: -10px;
+    }
+
+    .divider {
+      width: 100%;
+      text-align: center;
+      border-bottom: 2px solid #222c72;
+      line-height: 0.1em;
+      margin: 10px 0 20px;
+    }
+
+    .divider span {
+      background: var(--bg);
+      padding: 0 15px;
+      color: #222c72;
+      font-weight: 700;
+      font-size: 18px;
+    }
+
+
+
+
+/* More app */
+    .more-row {
+  display: flex;
+  justify-content: center;
+  gap: 30px;
+  margin-top: -20px;
+}
+
+.more-button {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  cursor: pointer;
+  transition: transform 0.2s;
+}
+
+.more-button img {
+  width: 30px;
+  height: 30px;
+}
+
+.more-button p {
+  margin-top: 8px;
+  font-size: 1rem;
+  color: #333;
+}
+
+.more-button:hover {
+  transform: scale(1.05);
+}
+
+
+  </style>
+  <body>
+
+    <button class="corner-btn left" id="todoBtn">ToDo List</button>
+
+    
+
+    
+
+     <!-- Google Apps Button -->
+<button class="corner-btn right" id="googleBtn">Google Apps</button>
+
+<!-- Popup Modal -->
+<div id="googleModal" class="modal">
+  <div class="modal-content">
+    <div class="modal-header">
+      <h3>Google Apps</h3>
+      <button id="closeBtn" class="modal-close" aria-label="Close Google Apps modal">&times;</button>
+    </div>
+    <div class="app-grid">
+
+
+
+
+      <div class="app-item" onclick="openApp('https://myaccount.google.com')">
+        <img src="Assets/GoogleApps/Account.png" alt="Account" />
+        <p>Account</p>
+      </div>
+
+
+
+
+      <div class="app-item" onclick="openApp('https://www.blogger.com')">
+        <img src="Assets/GoogleApps/Blogger.png" alt="Blogger" />
+        <p>Blogger</p>
+      </div>
+
+      <div class="app-item" onclick="openApp('https://www.google.com')">
+        <img src="Assets/GoogleApps/Search.png" alt="Search" />
+        <p>Search </p>
+      </div>
+
+
+      <div class="app-item" onclick="openApp('https://www.youtube.com/')">
+        <img src="Assets/GoogleApps/YouTube.png" alt="YouTube" />
+        <p>YouTube</p>
+      </div>
+
+
+
+      <div class="app-item" onclick="openApp('https://keep.google.com/')">
+        <img src="Assets/GoogleApps/Keep.png" alt="keep" />
+        <p>Keep</p>
+      </div>
+
+
+      <div class="app-item" onclick="openApp('https://meet.google.com/')">
+        <img src="Assets/GoogleApps/Meeting.png" alt="Meeting" />
+        <p>Meeting</p>
+      </div>
+
+
+      <div class="app-item" onclick="openApp('https://www.google.com/maps')">
+        <img src="Assets/GoogleApps/Maps.png" alt="Maps" />
+        <p>Maps</p>
+      </div>
+
+
+      <div class="app-item" onclick="openApp('https://gemini.google.com/')">
+        <img src="Assets/GoogleApps/Gemini.png" alt="Gemini" />
+        <p>Gemini</p>
+      </div>
+
+
+      <div class="app-item" onclick="openApp('https://news.google.com/')">
+        <img src="Assets/GoogleApps/News.png" alt="News" />
+        <p>News</p>
+      </div>
+
+
+      <div class="app-item" onclick="openApp('https://mail.google.com/')">
+        <img src="Assets/GoogleApps/Mail.png" alt="Mail" />
+        <p>Mail</p>
+      </div>
+
+
+      <div class="app-item" onclick="openApp('https://mail.google.com/chat')">
+        <img src="Assets/GoogleApps/Chat.png" alt="Chat" />
+        <p>Chat</p>
+      </div>
+
+
+      <div class="app-item" onclick="openApp('https://contacts.google.com/')">
+        <img src="Assets/GoogleApps/Contacts.png" alt="Contacts" />
+        <p>Contacts</p>
+      </div>
+
+
+      <div class="app-item" onclick="openApp('https://drive.google.com/')">
+        <img src="Assets/GoogleApps/Drive.png" alt="Drive" />
+        <p>Drive</p>
+      </div>
+
+
+      <div class="app-item" onclick="openApp('https://calendar.google.com/')">
+        <img src="Assets/GoogleApps/Calendar.png" alt="Calendar" />
+        <p>Calendar</p>
+      </div>
+
+
+      <div class="app-item" onclick="openApp('https://play.google.com/')">
+        <img src="Assets/GoogleApps/Play.png" alt="Play" />
+        <p>Play</p>
+      </div>
+
+
+      <div class="app-item" onclick="openApp('https://translate.google.com/')">
+        <img src="Assets/GoogleApps/Translate.png" alt="Translate" />
+        <p>Translate</p>
+      </div>
+
+
+      <div class="app-item" onclick="openApp('https://photos.google.com/')">
+        <img src="Assets/GoogleApps/Photos.png" alt="Photos" />
+        <p>Photos</p>
+      </div>
+
+
+      <div class="app-item" onclick="openApp('https://myadcenter.google.com/')">
+        <img src="Assets/GoogleApps/Myadcenter.png" alt="Myadcenter" />
+        <p>Myadcenter</p>
+      </div>
+
+
+      <div class="app-item" onclick="openApp('https://www.google.com/shopping')">
+        <img src="Assets/GoogleApps/Shopping.png" alt="Shopping" />
+        <p>Shopping</p>
+      </div>
+
+
+      <div class="app-item" onclick="openApp('https://docs.google.com/videos')">
+        <img src="Assets/GoogleApps/Vid.png" alt="Vid" />
+        <p>Vid</p>
+      </div>
+
+
+      <div class="app-item" onclick="openApp('https://www.google.com/finance')">
+        <img src="Assets/GoogleApps/Finance.png" alt="Finance" />
+        <p>Finance</p>
+      </div>
+
+
+      <div class="app-item" onclick="openApp('https://docs.google.com/document')">
+        <img src="Assets/GoogleApps/Docs.png" alt="Docs" />
+        <p>Docs</p>
+      </div>
+
+
+
+      <div class="app-item" onclick="openApp('https://docs.google.com/spreadsheets')">
+        <img src="Assets/GoogleApps/Sheets.png" alt="Sheets" />
+        <p>Sheets</p>
+      </div>
+
+
+
+      <div class="app-item" onclick="openApp('https://docs.google.com/presentation')">
+        <img src="Assets/GoogleApps/Slides.png" alt="Slides" />
+        <p>Slides</p>
+      </div>
+
+
+
+      <div class="app-item" onclick="openApp('https://books.google.com')">
+        <img src="Assets/GoogleApps/Books.png" alt="Books" />
+        <p>Books</p>
+      </div>
+
+
+
+      <div class="app-item" onclick="openApp('https://classroom.google.com')">
+        <img src="Assets/GoogleApps/Classroom.png" alt="Classroom" />
+        <p>Classroom</p>
+      </div>
+
+
+
+      <div class="app-item" onclick="openApp('https://earth.google.com')">
+        <img src="Assets/GoogleApps/Earth.png" alt="Earth" />
+        <p>Earth</p>
+      </div>
+
+
+
+      <div class="app-item" onclick="openApp('https://www.google.com/interests/saved')">
+        <img src="Assets/GoogleApps/Saved.png" alt="Saved" />
+        <p>Saved</p>
+      </div>
+
+
+
+      <div class="app-item" onclick="openApp('https://artsandculture.google.com/')">
+        <img src="Assets/GoogleApps/ArtsandCulture.png" alt="Arts and Culture" />
+        <p>Arts and Culture</p>
+      </div>
+
+
+
+      <div class="app-item" onclick="openApp('https://ads.google.com/')">
+        <img src="Assets/GoogleApps/GoogleAds.png" alt="Google Ads" />
+        <p>Google Ads</p>
+      </div>
+
+
+
+      <div class="app-item" onclick="openApp('https://www.google.com/')">
+        <img src="Assets/GoogleApps/MerchantCenter.png" alt="Merchant Center" />
+        <p>Merchant Center</p>
+      </div>
+
+
+
+      <div class="app-item" onclick="openApp('https://one.google.com/')">
+        <img src="Assets/GoogleApps/GoogleOne.png" alt="Google One " />
+        <p>Google One</p>
+      </div>
+
+
+
+      <div class="app-item" onclick="openApp('https://www.google.com/travel')">
+        <img src="Assets/GoogleApps/Travel.png" alt="Travel" />
+        <p>Travel</p>
+      </div>
+
+
+
+      <div class="app-item" onclick="openApp('https://docs.google.com/forms')">
+        <img src="Assets/GoogleApps/Forms.png" alt="Forms" />
+        <p>Forms</p>
+      </div>
+
+
+
+        
+      <div class="app-item" onclick="openApp('https://chromewebstore.google.com/')">
+        <img src="Assets/GoogleApps/chromewebstore.png" alt="Chrome Web Store" />
+        <p>Chrome Web Store</p>
+      </div>
+
+<div class="app-item" onclick="openApp('https://https://passwords.google.com/')">
+        <img src="Assets/GoogleApps/PasswordsManager.png" alt="Passwords Manager " />
+        <p>Passwords Manager </p>
+      </div>
+
+
+
+      <div class="app-item" onclick="openApp('https://analytics.google.com/analytics/web/provision')">
+        <img src="Assets/GoogleApps/GoogleAnalytics.png" alt="Google Analytics " />
+        <p>Google Analytics </p>
+      </div>
+
+
+
+      <div class="app-item" onclick="openApp('https://wallet.google.com/')">
+        <img src="Assets/GoogleApps/Wallet.png" alt="Wallet" />
+        <p>Wallet </p>
+      </div>
+      <div class="app-item" onclick="openApp('https://notebooklm.google.com/')">
+        <img src="Assets/GoogleApps/NotebookLM.png" alt="Notebook LM " />
+        <p>Notebook LM </p>
+      </div>
+      <div class="app-item" onclick="openApp('https://tasks.google.com/')">
+        <img src="Assets/GoogleApps/Tasks.png" alt="Tasks " />
+        <p>Tasks </p>
+      </div>
+        
+    </div>
+  </div>
+</div>
+
+<!-- AI Tools Panel -->
+<aside id="aiPanel" class="ai-panel" aria-hidden="true">
+  <div class="ai-panel-header">
+    <h3>AI Tools</h3>
+    <button id="aiPanelClose" class="modal-close" aria-label="Close AI Tools">&times;</button>
+  </div>
+  <p>Quick access to your favorite AI assistants.</p>
+  <div class="ai-panel-buttons">
+    <button class="ai-panel-btn" data-url="https://chat.openai.com/">
+      <span class="ai-icon"><i class="fa-brands fa-openai"></i></span>
+      <span>
+        <strong>ChatGPT</strong>
+        <small>OpenAI’s conversational assistant</small>
+      </span>
+    </button>
+    <button class="ai-panel-btn" data-url="https://copilot.microsoft.com/">
+      <span class="ai-icon"><i class="fa-brands fa-github"></i></span>
+      <span>
+        <strong>Copilot</strong>
+        <small>Microsoft Copilot in your browser</small>
+      </span>
+    </button>
+  </div>
+</aside>
+
+
+
+
+    <header>
+      <div class="header-row">
+        <img src="Assets/IUB-logo.png" alt="IUB Logo" class="logo" />
+        <h1>The Islamia University of Bahawalpur</h1>
+      </div>
+    </header>
+
+    <div class="main">
+      <section class="left-section">
+        <div class="time-row">
+          <div class="time-box" id="hours">00</div>
+          <div class="time-box" id="minutes">00</div>
+          <div class="time-box" id="seconds">00</div>
+        </div>
+        <div class="date-box" id="date">Tuesday, 31 December 2024</div>
+        <div class="weather-row">
+          <div class="weather-item">
+            <i class="fa-solid fa-temperature-three-quarters"></i>
+            <span id="tempVal">30°C</span>
+          </div>
+          <div class="weather-item">
+  <i class="fa-solid fa-location-dot"></i>
+  <span id="location">Detecting location...</span>
+</div>
+
+        </div>
+
+        <div class="divider">
+          <span>IUB Help Centre</span>
+        </div>
+
+        <div class="help-row">
+          <div class="help-card" id="liveChat">
+            <img src="Assets/live_chat.svg" alt="Live Chat" />
+            <p>Live Chat</p>
+          </div>
+          <div class="help-card" id="announcement">
+            <img src="Assets/announsments.svg" alt="Announcements" />
+            <p>Announcements</p>
+          </div>
+          <div class="help-card" id="contact">
+            <img src="Assets/phone_email.svg" alt="Contact" />
+            <p>Contact No#</p>
+          </div>
+        </div>
+      </section>
+
+
+
+
+      <!-- Right said -->
+
+      <section class="right-section">
+
+
+
+
+        <!-- 3 button -->
+        <div class="top-buttons">
+          <button class="portal-btn" id="myiubBtn">My IUB</button>
+          <button class="portal-btn" id="eportalBtn">E-Portal</button>
+          <button class="portal-btn" id="lmsBtn">LMS</button>
+        </div>
+
+
+
+
+        <!-- Serchbar -->
+
+
+        <div class="search-container">
+          <input
+            type="text"
+            id="searchInput"
+            placeholder="Search anything here..."
+          />
+          <button id="voiceBtn"><i class="fa-solid fa-microphone"></i></button>
+          <button id="searchBtn">
+            <i class="fa-solid fa-magnifying-glass"></i>
+          </button>
+
+          </div>
+
+
+
+
+          
+
+        
+
+        <!-- sliders dot -->
+        <div class="carousel-container">
+  <button class="carrow" id="prev">‹</button>
+  <img id="slide" src="Assets/fee_structure_ads.jpg" alt="Slide" />
+  <button class="carrow" id="next">›</button>
+  <div class="dots" id="dots"></div>
+</div>
+
+
+
+
+           <!-- More app -->
+        <div class="divider">
+  <span>More App</span>
+</div>
+<div class="more-row">
+<div class="more-button" onclick="window.open('https://chromewebstore.google.com/search/iub', '_self')">
+    <img src="Assets/charome.png" alt="Extension" />
+    <p>Extension</p>
+  </div>
+  <div class="more-button" onclick="window.open('https://apps.microsoft.com/detail/9pl653tpwdch?hl=en-US&gl=PK', '_self')">
+    <img src="Assets/softwaer.png" alt="Software" />
+    <p>Software</p>
+  </div>
+  <div class="more-button" onclick="window.open('https://play.google.com/store/apps/details?id=com.AdeebTechLab.IUBportals', '_self')">
+    <img src="Assets/app.png" alt="Mobile App" />
+    <p>Mobile App</p>
+  </div>
+</div>
+
+
+
+
+      </section>
+
+
+
+
+
+
+<!-- Foter -->
+
+    <footer>
+      <button class="corner-btn left footer-btn" id="aiBtn">AI Tools</button>
+      <div class="social-footer">
+        <a href="https://www.facebook.com/iubwp"
+          ><i class="fa-brands fa-facebook social-icon"></i
+        ></a>
+        <a href="https://x.com/theiubwp"
+          ><i class="fa-brands fa-x-twitter social-icon"></i
+        ></a>
+        <a href="https://www.instagram.com/theiubwp"
+          ><i class="fa-brands fa-instagram social-icon"></i
+        ></a>
+        <a href="https://www.linkedin.com/school/the-islamia-university-of-bahawalpur/posts/?feedView=all"
+          ><i class="fa-brands fa-linkedin social-icon"></i
+        ></a>
+        <a href="https://www.youtube.com/channel/UCaB7NBp3x31nVU2VoLS1a1Q"
+          ><i class="fa-brands fa-youtube social-icon"></i
+        ></a>
+        <a href="https://www.whatsapp.com/channel/0029VaCyEBo3mFYBt94MvG18"
+          ><i class="fa-brands fa-whatsapp social-icon"></i
+        ></a>
+      </div>
+      <button class="corner-btn right footer-btn" id="bookmarkBtn">
+        Bookmarks
+      </button>
+    </footer>
+
+    <script src="script.js"></script>
+  </body>
+</html>
