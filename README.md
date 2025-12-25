@@ -40,6 +40,9 @@ No more searching — everything you need is ready on your browser’s new tab!
 
 ---
 
+<img width="640" height="400" alt="image" src="https://github.com/user-attachments/assets/cea8e9b3-695e-4416-b40a-206de397610e" />
+
+
 ## 📦 Installation
 
 1. Clone this repository  
