@@ -46,9 +46,7 @@ No more searching — everything you need is ready on your browser’s new tab!
 ## 📦 Installation
 
 1. Clone this repository  
-2. Go to `chrome://extensions/`  
-3. Enable **Developer mode**  
-4. Click **Load unpacked** and select this folder
+2. Go to `https://chromewebstore.google.com/search/IUB%20Portals%20New%20Tab` for open the **Iub Portal** 
 
 ---
 
