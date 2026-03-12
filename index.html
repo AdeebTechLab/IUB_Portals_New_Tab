@@ -22,6 +22,141 @@
       --card-bg: #ffffff;
       --border: #e0ab1d;
       --shadow: 0 10px 18px rgba(23, 38, 83, 0.06);
+      --accent-gold: #ffd200;
+      --more-icon-filter: drop-shadow(0 4px 12px rgba(34, 44, 114, 0.22)) sepia(0.9) saturate(3.2) hue-rotate(200deg);
+    }
+
+    body.dark-mode {
+      --bg: #12121c;
+      --card-bg: #1f1f28;
+      --border: rgba(255, 255, 255, 0.1);
+      --shadow: 0 10px 18px rgba(0, 0, 0, 0.6);
+      --navy: #c4c9e1;
+      --mustard: #c9a24b;
+      --more-icon-filter: drop-shadow(0 4px 12px rgba(0, 0, 0, 0.35)) sepia(0.85) saturate(2.2) hue-rotate(20deg);
+    }
+
+    body.dark-mode {
+      color: #ffffff;
+    }
+
+    body.dark-mode header h1 {
+      color: #ffffff;
+    }
+
+    body.dark-mode .date-box,
+    body.dark-mode .location-box,
+    body.dark-mode .weather-item,
+    body.dark-mode .portal-btn,
+    body.dark-mode .help-card p,
+    body.dark-mode .more-button p {
+      color: #ffffff;
+    }
+
+    body.dark-mode input::placeholder {
+      color: #999;
+    }
+
+    body.dark-mode #searchInput {
+      color: #ffffff;
+    }
+
+    body.dark-mode #googleModal {
+      background: #2d2d2d;
+      color: #ffffff;
+    }
+
+    body.dark-mode .modal-header h3 {
+      color: #ffffff;
+    }
+
+    body.dark-mode .app-item p {
+      color: #ffffff;
+    }
+
+    body.dark-mode .ai-panel {
+      background: #151927;
+      color: #f4f5ff;
+      box-shadow: -12px 0 24px rgba(0, 0, 0, 0.6);
+    }
+
+    body.dark-mode .ai-panel-btn {
+      background: rgba(255, 255, 255, 0.03);
+      border-color: rgba(255, 255, 255, 0.1);
+      color: #f4f5ff;
+      box-shadow: none;
+    }
+
+    body.dark-mode .time-box {
+      background: #3d3d3d;
+      color: #ffffff;
+    }
+
+    body.dark-mode .help-card {
+      background: #1f212a;
+      border-color: rgba(255, 255, 255, 0.08);
+      box-shadow: 0 10px 16px rgba(0, 0, 0, 0.6);
+    }
+
+    body.dark-mode .portal-btn {
+      background: var(--mustard);
+      border-color: transparent;
+      color: #fff;
+      box-shadow: 0 8px 18px rgba(0, 0, 0, 0.5);
+      letter-spacing: 0.04em;
+    }
+
+    body.dark-mode .header-toggle-btn,
+    body.dark-mode #googleBtn {
+      background: transparent;
+      border-color: transparent;
+      color: #fff;
+      box-shadow: 0 8px 18px rgba(0, 0, 0, 0.5);
+      letter-spacing: 0.04em;
+    }
+
+    body.dark-mode .divider span {
+      color: #f4f5ff;
+      background: rgba(255, 255, 255, 0.05);
+    }
+
+    body.dark-mode .help-centre {
+      color: #ffffff;
+    }
+
+    body.dark-mode .search-container {
+      background: rgba(255, 255, 255, 0.04);
+      border-color: rgba(255, 255, 255, 0.12);
+      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.7);
+    }
+
+    body.dark-mode #voiceBtn,
+    body.dark-mode #searchBtn {
+      color: #999;
+    }
+
+    body.dark-mode .dot {
+      background-color: #555;
+    }
+
+    body.dark-mode .dot.active {
+      background-color: #e0ab1d;
+    }
+
+    body.dark-mode .modal-close {
+      color: #ffffff;
+    }
+
+    body.dark-mode .modal-close:hover {
+      color: var(--mustard);
+    }
+
+    body.dark-mode .social-icon {
+      color: var(--mustard);
+    }
+
+    body.dark-mode .social-icon:hover {
+      color: #ffffff;
     }
 
     * {
@@ -48,9 +183,9 @@ body {
   flex-wrap: wrap;
   justify-content: center;
   align-items: center;
-  gap: 5vw;
+  gap: 3.5vw;
   width: 90vw;
-  max-width: 1200px;
+  max-width: 1050px;
   min-width: 300px;
   height: auto;
 }
@@ -71,13 +206,13 @@ body {
 
 /* Optional: Specific left-section tweaks */
 .left-section {
-   gap: 20px;
-   margin-top: 25px;
+   gap: 14px;
+   margin-top: 18px;
 }
 
 .right-section {
-  gap: 20px;
-  margin-top: 25px;
+  gap: 14px;
+  margin-top: 18px;
 }
 
 
@@ -88,14 +223,22 @@ body {
       position: fixed;
       top: 20px;
       padding: 10px 16px;
-      border-radius: 12px;
-      background: var(--mustard);
-      color: #ffffff;
-      font-weight: 700;
+      border-radius: 11px;
+      background: transparent;
+      color: var(--navy);
+      font-weight: 600;
+      font-size: 13px;
       border: none;
       cursor: pointer;
       z-index: 999;
       transition: transform 0.2s ease;
+      box-shadow: 0 6px 14px rgba(34, 44, 114, 0.25);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      min-width: 130px;
+      white-space: nowrap;
     }
     .corner-btn:hover {
       transform: translateY(-2px);
@@ -105,6 +248,13 @@ body {
     }
     .right {
       right: 20px;
+    }
+
+    /* ensure corner icons match size */
+    .header-toggle-btn i,
+    #googleBtn i {
+      font-size: 18px;
+      line-height: 1;
     }
 
     header {
@@ -119,34 +269,44 @@ body {
       display: flex;
       align-items: center;
       justify-content: center;
-      gap: 12px;
+      gap: 13px;
     }
     .logo {
-      width: 70px;
-      height: 70px;
-      border-radius: 12px;
+      width: 58px;
+      height: 58px;
+      border-radius: 11px;
     }
     .header-row h1 {
-      font-size: 24px;
+      font-size: 21px;
       font-weight: 700;
       color: black;
+    }
+    .header-toggle-btn {
+      border: none;
+      border-radius: 999px;
+      padding: 6px 14px;
+      background: transparent;
+      color: var(--navy);
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      letter-spacing: 0.05em;
+      cursor: pointer;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+    .header-toggle-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 14px rgba(14, 33, 89, 0.15);
     }
 
 
 
 
     /* google app  */
-#googleBtn {
-      position: fixed;
-      top: 20px;
-      right: 20px;
-      padding: 10px 16px;
-      color: white;
-
-      border: none;
-      border-radius: 12px;
-      cursor: pointer;
-      z-index: 999;
+    #googleBtn {
+      letter-spacing: 0.03em;
     }
 
     #googleModal {
@@ -154,12 +314,12 @@ body {
       position: fixed;
       top: 80px;
       right: 20px;
-      width: 320px;
+      width: 300px;
       height: calc(100vh - 200px);
       background: #fff;
-      border-radius: 12px;
+      border-radius: 11px;
       box-shadow: 0 0 12px rgba(0,0,0,0.2);
-      padding: 20px;
+      padding: 18px;
       z-index: 1000;
       overflow: hidden;
     }
@@ -168,7 +328,7 @@ body {
       max-height: 100%;
       overflow-y: auto;
       overflow-x: hidden;
-      padding-right: 8px;
+      padding-right: 7px;
       position: relative;
     }
 
@@ -178,8 +338,8 @@ body {
     .app-grid {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
-      gap: 16px;
-      margin-top: 10px;
+      gap: 14px;
+      margin-top: 9px;
     }
 
     .app-item {
@@ -190,18 +350,29 @@ body {
       transition: transform 0.2s;
     }
 
+    .app-item img {
+      width: 46px;
+      height: 46px;
+      object-fit: contain;
+      border-radius: 12px;
+      padding: 8px;
+      background: rgba(34,44,114,0.05);
+      border: 1px solid rgba(34,44,114,0.12);
+      box-shadow: 0 4px 12px rgba(34,44,114,0.08);
+    }
+
     .app-item:hover {
       transform: scale(1.05);
     }
 
     .app-item img {
-      width: 40px;
-      height: 40px;
+      width: 36px;
+      height: 36px;
       margin-bottom: 6px;
     }
 
     .app-item p {
-      font-size: 0.75rem;
+      font-size: 0.72rem;
       color: #333;
       text-align: center;
       margin: 0;
@@ -211,12 +382,12 @@ body {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      gap: 12px;
-      margin-bottom: 12px;
+      gap: 13px;
+      margin-bottom: 13px;
     }
 
     .modal-header h3 {
-      font-size: 1rem;
+      font-size: 1.05rem;
       color: var(--navy);
       margin: 0;
     }
@@ -229,6 +400,11 @@ body {
       color: var(--navy);
       cursor: pointer;
       padding: 0;
+      transition: color 0.3s ease, transform 0.2s ease;
+    }
+    .modal-close:hover {
+      color: var(--mustard);
+      transform: scale(1.2);
     }
 
 
@@ -236,15 +412,15 @@ body {
     .ai-panel {
       position: fixed;
       top: 0;
-      right: -320px;
-      width: 300px;
+      right: -360px;
+      width: 340px;
       height: 100vh;
       background: #ffffff;
-      box-shadow: -10px 0 30px rgba(0, 0, 0, 0.1);
-      padding: 24px 20px;
+      box-shadow: -12px 0 30px rgba(0, 0, 0, 0.2);
+      padding: 26px 24px;
       display: flex;
       flex-direction: column;
-      gap: 16px;
+      gap: 20px;
       transition: right 0.3s ease;
       z-index: 1001;
     }
@@ -262,6 +438,9 @@ body {
     .ai-panel-header h3 {
       margin: 0;
       color: var(--navy);
+      font-size: 1.25rem;
+      letter-spacing: 0.07em;
+      text-transform: uppercase;
     }
 
     .ai-panel-buttons {
@@ -273,25 +452,26 @@ body {
     .ai-panel-btn {
       display: flex;
       align-items: center;
-      gap: 12px;
+      gap: 14px;
       padding: 14px 16px;
-      border-radius: 12px;
-      border: 1px solid var(--border);
-      background: var(--card-bg);
+      border-radius: 14px;
+      border: 1px solid rgba(34,44,114,0.15);
+      background: #f8fbff;
       cursor: pointer;
       transition: transform 0.2s ease, box-shadow 0.2s ease;
       text-align: left;
+      box-shadow: inset 0 1px 0 rgba(255,255,255,0.6);
     }
 
     .ai-panel-btn:hover {
-      transform: translateX(-4px);
-      box-shadow: var(--shadow);
+      transform: translateX(-2px);
+      box-shadow: 6px 10px 20px rgba(34,44,114,0.15);
     }
 
     .ai-icon {
-      width: 40px;
-      height: 40px;
-      border-radius: 10px;
+      width: 42px;
+      height: 42px;
+      border-radius: 12px;
       background: #eef2ff;
       display: flex;
       align-items: center;
@@ -300,147 +480,340 @@ body {
       color: var(--navy);
     }
 
+    .ai-panel-btn span {
+      display: flex;
+      flex-direction: column;
+      gap: 3px;
+    }
+
     .ai-panel-btn strong {
       display: block;
       font-size: 1rem;
-      color: #111;
+      color: #05070f;
     }
 
     .ai-panel-btn span small {
-      color: #666;
+      color: #4d5272;
+      font-size: 0.75rem;
+      line-height: 1.4;
     }
 
 
 
 
-    .time-row {
-      display: flex;
-      gap: 10px;
-    }
-    .time-box {
-      width: 100px;
-      height: 90px;
-      background: var(--card-bg);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 40px;
-      font-weight: 700;
-      border-radius: 12px;
-      box-shadow: var(--shadow);
-    }
-    .date-box {
-      background: var(--card-bg);
-      padding: 10px 24px;
-      border-radius: 12px;
-      box-shadow: var(--shadow);
+   .time-section{
+  display:flex;
+  align-items:center;
+  gap:22px;
+}
 
-    }
-    .weather-row {
-      display: flex;
-      gap: 18px;
-    }
-    .weather-item {
-      background: #222c72;
-      color: #fff;
-      padding: 10px 18px;
-      border-radius: 7px;
-      box-shadow: var(--shadow);
-      display: flex;
-      align-items: center;
-      gap: 8px;
-    }
+/* time boxes row */
+.time-row{
+  display:flex;
+  gap:10px;
+}
 
+/* time boxes */
+.time-box{
+  position:relative;
+  width:85px;
+  height:85px;
+  background:#f2f2f2;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:48px;
+  font-weight:800;
+  border-radius:14px;
+  color:#0a0f1a;
+  box-shadow: inset 0 3px 0 rgba(255,255,255,0.8),
+              inset 0 -3px 0 rgba(0,0,0,0.08),
+              0 6px 12px rgba(0,0,0,0.08);
+}
+
+/* flip line */
+.time-box::after{
+  content:"";
+  position:absolute;
+  top:50%;
+  left:0;
+  width:100%;
+  height:2px;
+  background:#d0d0d0;
+}
+
+/* right side info */
+.info-box{
+  display:flex;
+  flex-direction:column;
+  gap:8px;
+}
+
+/* date and location row */
+.date-location-row{
+  display:flex;
+  flex-direction:column;
+  gap:8px;
+  align-items:flex-start;
+  font-weight:500;
+  font-size:13px;
+  color:#333;
+}
+
+/* date */
+.date-box{
+  font-weight:700;
+  color:#222;
+  font-size:12px;
+  white-space:nowrap; /* keep date on a single line */
+}
+
+/* weather + location */
+.location-temp-row{
+  display:flex;
+  gap:12px;
+  align-items:center;
+  font-size:13px;
+}
+
+.temperature{
+  display:flex;
+  align-items:center;
+  gap:4px;
+  font-weight:400;
+}
+
+.weather-item{
+  background:transparent;
+  color:#333;
+  padding:0;
+  box-shadow:none;
+  font-weight:400;
+  font-size:13px;
+}
+
+.weather-item i{
+  color:#ff7a00;
+  margin-right: 3px;
+}
+
+.location-box{
+  display:flex;
+  align-items:center;
+  gap:5px;
+  font-weight:400;
+  color:#333;
+  font-size:12px;
+  white-space:nowrap; /* keep icon and label together */
+}
+
+.location-box i{
+  color:#ff7a00;
+}
     .help-row {
       display: flex;
-      gap: 20px;
+      gap: 16px;
+      width: 100%;
+      justify-content: space-between;
     }
     .help-card {
-      background: var(--card-bg);
-      box-shadow: var(--shadow);
-      border: var(--border) 1px solid;
-      border-radius: 16px;
-      width: 160px;
+      background: linear-gradient(145deg, rgba(255,255,255,0.96), rgba(241,247,255,0.9));
+      box-shadow: 0 10px 18px rgba(15, 23, 42, 0.08);
+      border: 1px solid rgba(34,44,114,0.2);
+      border-radius: 14px;
+      flex: 1 1 150px;
+      min-width: 110px;
+      max-width: 170px;
+      min-height: 100px;
       display: flex;
       flex-direction: column;
       align-items: center;
-      padding: 15px 10px;
+      justify-content: center;
+      padding: 12px 10px;
       text-align: center;
-      gap: 10px;
+      gap: 6px;
       cursor: pointer;
-      transition: transform 0.3s ease;
+      transition: transform 0.3s ease, border-color 0.3s ease;
+      overflow: hidden;
     }
     .help-card:hover {
-      transform: scale(1.1);
+      transform: translateY(-3px);
+      border-color: var(--navy);
     }
     .help-card img {
-      width: 55px;
-      height: 55px;
+      width: 34px;
+      height: 34px;
+      flex-shrink: 0;
+      filter: drop-shadow(0 4px 12px rgba(0,0,0,0.16)) sepia(0.7) saturate(2.5) hue-rotate(-10deg);
     }
 
-    .top-buttons {
+    .help-card p {
+      font-size: 0.7rem;
+      margin: 0;
+      font-weight: 400;
+      color: #222c72;
+      letter-spacing: 0.2px;
+    }
+
+    .portal-row {
       display: flex;
-      gap: 10px;
+      flex-wrap: nowrap;
+      gap: 14px;
+      width: 100%;
+      justify-content: space-between;
+      margin-top: 22px;
+      margin-bottom: 12px;
+      align-items: stretch;
     }
     .portal-btn {
-      background: var(--navy);
-      color: #fff;
-      border: 2px solid var(--border);
-      border-radius: 10px;
-      padding: 7px 20px;
-      font-weight: 800;
+      background: linear-gradient(135deg, var(--navy), #3a4aa5 70%);
+      color: #ffffff;
+      border: 1px solid rgba(34, 44, 114, 0.45);
+      border-radius: 12px;
+      min-height: 44px;
+      flex: 1;
+      font-weight: 600;
+      font-size: 14px;
       cursor: pointer;
-      transition: 0.2s;
-      transition: transform 0.3s ease;
+      box-shadow: 0 12px 20px rgba(34, 44, 114, 0.22);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
     }
     .portal-btn:hover {
-      background: #147d2b;
-      transform: scale(1.1);
+      transform: translateY(-2px);
+      box-shadow: 0 20px 28px rgba(34, 44, 114, 0.28);
+    }
+    .portal-btn:active {
+      transform: translateY(1px);
+      box-shadow: 0 8px 14px rgba(34, 44, 114, 0.25);
     }
 
     
 
    
 
-    /* Serch bar */
-    .search-container {
-      display: flex;
-      width: 100%;
-      max-width: 560px;
-      background: var(--card-bg);
-      border-radius: 10px;
-      box-shadow: var(--shadow);
-      overflow: hidden;
-    }
-    #searchInput {
-      flex: 1;
-      border: none;
-      outline: none;
-      padding: 12px 16px;
-      font-size: 16px;
-      color: #333;
-      font-style: italic;
-    }
-    #voiceBtn {
-      background: none;
-      border: none;
-      color: var(--navy);
-      width: 50px;
-      cursor: pointer;
-    }
-    #searchBtn {
-      background: var(--navy);
-      color: #fff;
-      border: none;
-      width: 50px;
-      cursor: pointer;
-    }
-    #voiceBtn i,
-    #searchBtn i {
-      font-size: 18px;
-    }
+  /* Search bar */
+  .search-container {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  max-width: 660px;
+  height: 46px;
+  border-radius: 999px;
+  padding: 4px 16px;
+  background: linear-gradient(125deg, #ffffff, #f4f8ff 70%);
+  border: 2px solid rgba(34,44,114,0.2);
+  box-shadow: 0 10px 24px rgba(34,44,114,0.15);
+  margin-bottom: 18px;
+  gap: 8px;
+}
 
+#searchInput {
+  flex: 1;
+  border: none;
+  outline: none;
+  padding: 8px 12px;
+  font-size: 16px;
+  color: #111;
+  font-style: normal;
+  background: transparent;
+  font-weight: 500;
+}
 
+.search-container button {
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  transition: transform 0.2s ease, background 0.2s ease;
+}
+
+.icon-btn {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--navy);
+  background: rgba(34,44,114,0.08);
+  border: 1px solid transparent;
+}
+
+.icon-btn.accent {
+  background: var(--navy);
+  color: #fff;
+  border-color: var(--navy);
+}
+
+.icon-btn:hover {
+  transform: translateY(-1px);
+  background: rgba(34,44,114,0.2);
+}
+
+.icon-btn.active {
+  background: var(--mustard);
+  color: #fff;
+}
+
+.search-actions {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.ai-mode-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border: 1px solid rgba(34,44,114,0.35);
+  background: rgba(34,44,114,0.08);
+  color: var(--navy);
+}
+
+.ai-mode-btn i {
+  font-size: 1rem;
+}
+
+.ai-mode-btn.active {
+  background: var(--navy);
+  color: #fff;
+  border-color: var(--navy);
+}
+
+#voiceBtn {
+  background: none;
+  border: none;
+  color: #666;
+  width: 34px;
+  cursor: pointer;
+  transition: color 0.3s ease, transform 0.2s ease;
+}
+
+#voiceBtn:hover {
+  color: var(--navy);
+  transform: scale(1.1);
+}
+
+#searchBtn {
+  background: none;
+  border: none;
+  color: #222c72;
+  width: 34px;
+  cursor: pointer;
+  transition: color 0.3s ease, transform 0.2s ease;
+}
+
+#searchBtn:hover {
+  color: var(--mustard);
+  transform: scale(1.15);
+}
+
+#voiceBtn i,
+#searchBtn i {
+  font-size: 18px;
+}
 
 
     /* slider */
@@ -448,25 +821,32 @@ body {
     .carousel-container {
       position: relative;
       width: 100%;
-      max-width: 460px;
+      max-width: 320px;
+      margin-top: 10px;
     }
     .carousel-container img {
       width: 100%;
       height: auto;
       border-radius: 14px;
-      object-fit: contain;
+      object-fit: cover;
+      box-shadow: 0 10px 20px rgba(15, 23, 42, 0.15);
     }
     .carrow {
       position: absolute;
       top: 50%;
       transform: translateY(-50%);
-      width: 38px;
-      height: 38px;
-      background: #222c72;
+      width: 40px;
+      height: 40px;
+      background: var(--mustard);
       color: #fff;
-      border: none;
+      border: 1px solid transparent;
       border-radius: 50%;
       cursor: pointer;
+      box-shadow: 0 10px 18px rgba(0, 0, 0, 0.35);
+      font-size: 1.1rem;
+    }
+    .carrow:hover {
+      box-shadow: 0 15px 28px rgba(0, 0, 0, 0.6);
     }
     #prev {
       left: -45px;
@@ -479,7 +859,7 @@ body {
   display: flex;
   justify-content: center;
   margin-top: 10px;
-  gap: 8px;
+  gap: 12px;
 }
 
 .dot {
@@ -508,19 +888,13 @@ body {
       align-items: center;
     }
     .footer-btn {
-      background: var(--mustard);
-      color: #fff;
-      border: none;
-      border-radius: 12px;
-      padding: 19px 17px;
-      font-weight: 700;
-      cursor: pointer;
       position: absolute;
-      bottom: 20px;
+
       transition: transform 0.2s ease;
-      display: flex;
-      justify-content: center;
-      align-items: center;
+      padding: 10px 16px;
+      min-width: 130px;
+      font-size: 13px;
+      font-weight: 600;
     }
     .footer-btn:hover {
       transform: translateY(-2px);
@@ -541,12 +915,13 @@ body {
     }
     .social-icon {
       font-size: 26px;
-      color: var(--navy);
+      color: var(--mustard);
       cursor: pointer;
-      transition: color 0.3s;
+      transition: color 0.3s, transform 0.2s ease;
     }
     .social-icon:hover {
-      color: var(--mustard);
+      color: var(--navy);
+      transform: scale(1.2);
     }
     .social-footer {
       display: flex;
@@ -557,37 +932,37 @@ body {
 
     .help-centre {
       color: #222c72;
-      font-weight: 700;
-      font-size: 18px;
+      font-weight: 650;
+      font-size: 16px;
       text-align: left;
-      margin-top: -10px;
+      margin-top: -9px;
     }
 
     .divider {
       width: 100%;
+      max-width: 560px;
       text-align: center;
-      border-bottom: 2px solid #222c72;
+      border-bottom: 2px solid rgba(0, 0, 0, 0.04);
       line-height: 0.1em;
-      margin: 10px 0 20px;
+      margin: 20px auto 28px;
     }
 
     .divider span {
       background: var(--bg);
-      padding: 0 15px;
-      color: #222c72;
+      padding: 0 13px;
+      color: #283075;
       font-weight: 700;
-      font-size: 18px;
+      font-size: 15px;
+      letter-spacing: 0.5px;
     }
-
-
 
 
 /* More app */
     .more-row {
   display: flex;
   justify-content: center;
-  gap: 30px;
-  margin-top: -20px;
+  gap: 35px;
+  margin-top: 5px;
 }
 
 .more-button {
@@ -599,14 +974,15 @@ body {
 }
 
 .more-button img {
-  width: 30px;
-  height: 30px;
+  width: 26px;
+  height: 26px;
+
 }
 
 .more-button p {
-  margin-top: 8px;
-  font-size: 1rem;
-  color: #333;
+  margin-top: 7px;
+  font-size: 0.65rem;
+  color: var(--navy);
 }
 
 .more-button:hover {
@@ -614,17 +990,112 @@ body {
 }
 
 
+
+
+  /* responsive adjustments */
+  @media (max-width: 480px) {
+    .time-box {
+      width: 60px;
+      height: 60px;
+      font-size: 32px;
+      border-radius: 10px;
+    }
+    .logo {
+      width: 45px;
+      height: 45px;
+    }
+    .header-row h1 {
+      font-size: 16px;
+    }
+    .portal-btn {
+      padding: 5px 12px;
+      font-size: 12px;
+    }
+    .corner-btn {
+      padding: 6px 10px;
+      font-size: 12px;
+    }
+    .search-container {
+      max-width: 100%;
+      height: 44px;
+      padding: 3px 12px;
+      margin-bottom: 16px;
+    }
+    .search-container .icon-btn,
+    .ai-mode-btn {
+      width: 36px;
+      height: 36px;
+    }
+    .date-location-row {
+      flex-direction: column;
+      gap: 4px;
+      font-size: 11px;
+    }
+    .location-temp-row {
+      gap: 6px;
+      flex-wrap: wrap;
+    }
+    .date-box, .location-box, .temperature {
+      font-size: 9px;
+    }
+    .help-row {
+      flex-wrap: wrap;
+      gap: 10px;
+      justify-content: space-between;
+      width: 100%;
+    }
+    .help-card {
+      flex: 1 1 120px;
+      min-width: 100px;
+      max-width: 150px;
+      min-height: 100px;
+      padding: 10px 8px;
+      border-radius: 12px;
+      box-shadow: 0 8px 14px rgba(12, 20, 44, 0.08);
+    }
+    .help-card img {
+      width: 30px;
+      height: 30px;
+      filter: drop-shadow(0 4px 12px rgba(0,0,0,0.16)) sepia(0.7) saturate(2.5) hue-rotate(-10deg);
+    }
+    .help-card p {
+      font-size: 0.65rem;
+      font-weight: 400;
+    }
+    .more-row {
+      gap: 20px;
+    }
+    .more-button img {
+      width: 22px;
+      height: 22px;
+    }
+    .more-button p {
+      font-size: 0.6rem;
+    }
+    .portal-row {
+      justify-content: space-around;
+      gap: 6px;
+    }
+    .portal-btn {
+      min-width: 90px;
+      padding: 0 12px;
+      font-size: 12px;
+    }
+    .carousel-container {
+      max-width: 280px;
+    }
+  }
+
   </style>
   <body>
 
     <button class="corner-btn left" id="todoBtn">ToDo List</button>
 
-    
-
-    
-
      <!-- Google Apps Button -->
-<button class="corner-btn right" id="googleBtn">Google Apps</button>
+<button class="corner-btn right" id="googleBtn" aria-label="Google Apps" title="Google Apps">
+  <i class="fa-brands fa-google"></i>
+  <span>Google Apps</span>
+</button>
 
 <!-- Popup Modal -->
 <div id="googleModal" class="modal">
@@ -897,23 +1368,51 @@ body {
 <!-- AI Tools Panel -->
 <aside id="aiPanel" class="ai-panel" aria-hidden="true">
   <div class="ai-panel-header">
-    <h3>AI Tools</h3>
+    <h3>Popular AI Tools</h3>
     <button id="aiPanelClose" class="modal-close" aria-label="Close AI Tools">&times;</button>
   </div>
-  <p>Quick access to your favorite AI assistants.</p>
+  <p>Choose a tool to open instantly in a new tab.</p>
   <div class="ai-panel-buttons">
     <button class="ai-panel-btn" data-url="https://chat.openai.com/">
       <span class="ai-icon"><i class="fa-brands fa-openai"></i></span>
       <span>
         <strong>ChatGPT</strong>
-        <small>OpenAI’s conversational assistant</small>
+        <small>OpenAI's conversational assistant</small>
+      </span>
+    </button>
+    <button class="ai-panel-btn" data-url="https://bard.google.com/">
+      <span class="ai-icon"><i class="fa-brands fa-google"></i></span>
+      <span>
+        <strong>Bard</strong>
+        <small>Google's creative ideation partner</small>
       </span>
     </button>
     <button class="ai-panel-btn" data-url="https://copilot.microsoft.com/">
-      <span class="ai-icon"><i class="fa-brands fa-github"></i></span>
+      <span class="ai-icon"><i class="fa-brands fa-microsoft"></i></span>
       <span>
         <strong>Copilot</strong>
-        <small>Microsoft Copilot in your browser</small>
+        <small>Microsoft's productivity copilot</small>
+      </span>
+    </button>
+    <button class="ai-panel-btn" data-url="https://www.perplexity.ai/">
+      <span class="ai-icon"><i class="fa-solid fa-compass-drafting"></i></span>
+      <span>
+        <strong>Perplexity</strong>
+        <small>Instant answers with credible sources</small>
+      </span>
+    </button>
+    <button class="ai-panel-btn" data-url="https://claude.ai/">
+      <span class="ai-icon"><i class="fa-solid fa-lightbulb"></i></span>
+      <span>
+        <strong>Claude</strong>
+        <small>Anthropic's research companion</small>
+      </span>
+    </button>
+    <button class="ai-panel-btn" data-url="https://gemini.google.com/">
+      <span class="ai-icon"><i class="fa-solid fa-rocket"></i></span>
+      <span>
+        <strong>Gemini</strong>
+        <small>Google's fast insight engine</small>
       </span>
     </button>
   </div>
@@ -926,32 +1425,44 @@ body {
       <div class="header-row">
         <img src="Assets/IUB-logo.png" alt="IUB Logo" class="logo" />
         <h1>The Islamia University of Bahawalpur</h1>
+        <button id="themeToggleBtn" class="header-toggle-btn" aria-label="Toggle light/dark mode">
+          <i class="fa-solid fa-moon"></i>
+        </button>
       </div>
     </header>
 
     <div class="main">
       <section class="left-section">
-        <div class="time-row">
-          <div class="time-box" id="hours">00</div>
-          <div class="time-box" id="minutes">00</div>
-          <div class="time-box" id="seconds">00</div>
-        </div>
-        <div class="date-box" id="date">Tuesday, 31 December 2024</div>
-        <div class="weather-row">
-          <div class="weather-item">
-            <i class="fa-solid fa-temperature-three-quarters"></i>
-            <span id="tempVal">30°C</span>
+        <div class="time-section">
+          <div class="time-row">
+            <div class="time-box" id="hours">00</div>
+            <div class="time-box" id="minutes">00</div>
+            <div class="time-box" id="seconds">00</div>
           </div>
-          <div class="weather-item">
-  <i class="fa-solid fa-location-dot"></i>
-  <span id="location">Detecting location...</span>
-</div>
-
+          <div class="date-location-row">
+            <section class="date-box" id="date">Tuesday, 31 December 2024</section>
+            <div class="location-temp-row">
+              <div class="weather-item temperature">
+                <i class="fa-solid fa-temperature-half"></i>
+                <span id="tempVal">--°C</span>
+              </div>
+              <div class="location-box">
+                <i class="fa-solid fa-location-dot"></i>
+                <span id="location">Detecting location...</span>
+              </div>
+            </div>
+          </div>
         </div>
 
-        <div class="divider">
-          <span>IUB Help Centre</span>
-        </div>
+          <div class="portal-row">
+            <button class="portal-btn" id="myiubBtn">My IUB</button>
+            <button class="portal-btn" id="eportalBtn">E-Portal</button>
+            <button class="portal-btn" id="lmsBtn">LMS</button>
+          </div>
+
+          <div class="divider">
+            <span>IUB Help Centre</span>
+          </div>
 
         <div class="help-row">
           <div class="help-card" id="liveChat">
@@ -979,36 +1490,34 @@ body {
 
 
 
-        <!-- 3 button -->
-        <div class="top-buttons">
-          <button class="portal-btn" id="myiubBtn">My IUB</button>
-          <button class="portal-btn" id="eportalBtn">E-Portal</button>
-          <button class="portal-btn" id="lmsBtn">LMS</button>
-        </div>
-
-
-
-
         <!-- Serchbar -->
 
 
         <div class="search-container">
+          <button type="button" id="cameraBtn" class="icon-btn" aria-label="Camera search">
+            <i class="fa-solid fa-camera"></i>
+          </button>
           <input
             type="text"
             id="searchInput"
             placeholder="Search anything here..."
           />
-          <button id="voiceBtn"><i class="fa-solid fa-microphone"></i></button>
-          <button id="searchBtn">
-            <i class="fa-solid fa-magnifying-glass"></i>
-          </button>
-
+          <div class="search-actions">
+            <button type="button" id="voiceBtn" class="icon-btn" aria-label="Voice search">
+              <i class="fa-solid fa-microphone"></i>
+            </button>
+            <button type="button" id="searchBtn" class="icon-btn accent" aria-label="Submit search">
+              <i class="fa-solid fa-magnifying-glass"></i>
+            </button>
+            <button type="button" id="aiModeBtn" class="ai-mode-btn" aria-label="AI mode">
+              <i class="fa-solid fa-robot"></i>
+            </button>
           </div>
+        </div>
 
 
 
 
-          
 
         
 

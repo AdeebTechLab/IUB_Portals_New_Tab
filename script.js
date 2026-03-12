@@ -1,4 +1,30 @@
 window.onload = () => {
+  // Dark/Light Mode Toggle
+  const themeToggleBtn = document.getElementById("themeToggleBtn");
+  const themeIcon = themeToggleBtn ? themeToggleBtn.querySelector("i") : null;
+  const savedTheme = localStorage.getItem("theme") || "light";
+  const setIcon = (dark) => {
+    if (!themeIcon) return;
+    themeIcon.className = dark ? "fa-solid fa-sun" : "fa-solid fa-moon";
+  };
+  
+  if (savedTheme === "dark") {
+    document.body.classList.add("dark-mode");
+    setIcon(true);
+  } else {
+    document.body.classList.remove("dark-mode");
+    setIcon(false);
+  }
+  
+  if (themeToggleBtn) {
+    themeToggleBtn.onclick = () => {
+      document.body.classList.toggle("dark-mode");
+      const isDarkMode = document.body.classList.contains("dark-mode");
+      localStorage.setItem("theme", isDarkMode ? "dark" : "light");
+      setIcon(isDarkMode);
+    };
+  }
+
   function updateClock() {
     const now = new Date();
     document.getElementById("hours").textContent = String(now.getHours()).padStart(2, "0");
@@ -82,6 +108,18 @@ window.onload = () => {
   document.getElementById("liveChat").onclick = () => window.open("https://salmanadeeb.wixsite.com/livechat", "_self");
   document.getElementById("announcement").onclick = () => window.open("https://www.iub.edu.pk/news-update", "_self");
   document.getElementById("contact").onclick = () => window.open("https://www.iub.edu.pk/contact", "_self");
+  const cameraBtn = document.getElementById("cameraBtn");
+  if (cameraBtn) {
+    cameraBtn.onclick = () => {
+      document.getElementById("searchInput").focus();
+      cameraBtn.classList.add("active");
+      setTimeout(() => cameraBtn.classList.remove("active"), 250);
+    };
+  }
+  const aiModeBtn = document.getElementById("aiModeBtn");
+  if (aiModeBtn) {
+    aiModeBtn.onclick = () => aiModeBtn.classList.toggle("active");
+  }
   document.getElementById("eportalBtn").onclick = () => window.open("https://eportal.iub.edu.pk/login", "_self");
   document.getElementById("myiubBtn").onclick = () => window.open("https://my.iub.edu.pk/index.php/login", "_self");
   document.getElementById("lmsBtn").onclick = () => window.open("https://lms.iub.edu.pk/login/index.php", "_self");
@@ -168,29 +206,7 @@ window.onload = () => {
   }
 
   // Location
-  if (navigator.geolocation) {
-    navigator.geolocation.getCurrentPosition(success, error);
-  } else {
-    document.getElementById("location").textContent = "Location not supported";
-  }
-
-  function success(position) {
-    const lat = position.coords.latitude;
-    const lon = position.coords.longitude;
-    fetch(`https://nominatim.openstreetmap.org/reverse?format=json&lat=${lat}&lon=${lon}`)
-      .then((response) => response.json())
-      .then((data) => {
-        const city = data.address.city || data.address.town || data.address.village || "Unknown";
-        document.getElementById("location").textContent = city;
-      })
-      .catch(() => {
-        document.getElementById("location").textContent = "Location unavailable";
-      });
-  }
-
-  function error() {
-    document.getElementById("location").textContent = "Permission denied";
-  }
+  document.getElementById("location").textContent = "Bahawalpur";
 
   // Search Bar
   const searchInput = document.getElementById("searchInput");
