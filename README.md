@@ -5,7 +5,7 @@
 ### A Modern & Personalized Chrome New Tab Dashboard for Students of
 ## **The Islamia University of Bahawalpur**
 
-Replace Chrome's default new tab with a beautiful student dashboard featuring academic shortcuts, productivity tools, live weather, customizable themes, bookmarks, notes, AI tools, and much more.
+<img width="1911" height="955" alt="Screenshot 2026-07-17 162744" src="https://github.com/user-attachments/assets/e1272b14-1d18-46f3-ab5a-645fc1bb3676" />
 
 <br>
 
