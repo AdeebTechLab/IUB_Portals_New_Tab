@@ -1,0 +1,430 @@
+<!doctype html>
+<html lang="en" data-theme="light">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>IUB New Tab</title>
+    <link rel="icon" type="image/png" href="assets/logo.png" />
+    <link href="https://fonts.googleapis.com/css2?family=Sora:wght@500;600;700&family=Inter:wght@400;500;600&family=Poppins:wght@500;600;700&family=Handjet:wght@400;700&display=swap" rel="stylesheet">
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+    />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+   <div class="app-shell">
+
+<div class="wallpaper-layer" id="wallpaperLayer"></div>
+
+<div class="wallpaper-panel" id="wallpaperPanel">
+  <span class="wallpaper-panel-title">Background Wallpaper</span>
+  <label class="wallpaper-upload-btn" for="wallpaperFileInput">
+    <i class="fa-solid fa-upload"></i> Choose Image
+  </label>
+  <input type="file" id="wallpaperFileInput" accept="image/*" hidden />
+  <div class="wallpaper-opacity-row">
+    <span>Opacity</span>
+    <input type="range" id="wallpaperOpacity" min="0" max="100" value="100" />
+  </div>
+  <button class="wallpaper-remove-btn" id="wallpaperRemoveBtn">Remove Wallpaper</button>
+</div>
+
+<!-- Top Bar -->
+    <div class="topbar" id="topbar">
+      <div class="brand">
+        <div class="crest"><img src="assets/logo.png" alt="IUB Logo" /></div>
+        <div class="brand-text">
+          Islamia University of Bahawalpur<small>Student Dashboard</small>
+        </div>
+      </div>
+      <div class="top-actions">
+        <div class="swatch-row" id="swatchRow">
+          <div
+            class="swatch active"
+            style="background: #26317a"
+            data-accent="#26317a"
+            data-accent2="#d4a94f"
+          ></div>
+          <div
+            class="swatch"
+            style="background: #0f5e4d"
+            data-accent="#0f5e4d"
+            data-accent2="#e0a458"
+          ></div>
+          <div
+            class="swatch"
+            style="background: #5e1f4a"
+            data-accent="#5e1f4a"
+            data-accent2="#d98a9c"
+          ></div>
+          <div
+            class="swatch"
+            style="background: #1c3a5e"
+            data-accent="#1c3a5e"
+            data-accent2="#4fb3d9"
+          ></div>
+        </div>
+        <button class="pill-btn" id="bookmarksBtn">
+          <i class="fa-solid fa-bookmark"></i> Bookmarks
+        </button>
+        <button class="pill-btn" id="todoBtn">
+          <i class="fa-solid fa-list-check"></i> To-Do
+        </button>
+        <button class="pill-btn" id="aiToolsBtn">
+          <i class="fa-solid fa-robot"></i> AI Tools
+        </button>
+        <div class="icon-toggle" id="themeToggle">
+          <i class="fa-solid fa-moon" id="themeIcon"></i>
+        </div>
+
+         <div class="icon-toggle" id="wallpaperBtn" title="Background wallpaper">
+      <i class="fa-solid fa-image"></i>
+    </div>
+
+        <div class="icon-toggle" id="googleAppsBtn" title="Google Apps">
+          <i class="fa-solid fa-grip"></i>
+        </div>
+      </div>
+    </div>
+
+    <!-- Main Grid -->
+     <div class="content-center">
+    <div class="main-grid">
+      <div class="col" id="leftCol">
+        <div class="card glass-card clock-card">
+          <svg class="border-trace">
+            <rect
+              x="1"
+              y="1"
+              width="calc(100% - 2px)"
+              height="calc(100% - 2px)"
+              rx="18"
+              pathLength="100"
+            ></rect>
+          </svg>
+          <div class="clock-weather-row">
+          <div class="clock-left">
+
+        <div class="digital-clock modern-clock" id="modernClock">
+        <span class="clock-reel" data-slot="h1"></span>
+        <span class="clock-reel" data-slot="h2"></span>
+        <span class="clock-sep">:</span>
+        <span class="clock-reel" data-slot="m1"></span>
+        <span class="clock-reel" data-slot="m2"></span>
+        <span class="clock-sep">:</span>
+        <span class="clock-reel clock-reel-sec" data-slot="s1"></span>
+        <span class="clock-reel clock-reel-sec" data-slot="s2"></span>
+        <span class="clock-ampm" id="clockAmPm">AM</span>
+      </div>
+              <div class="clock-date" id="clockDate"></div>
+              <div class="clock-loc" id="clockLoc">
+                <i class="fa-solid fa-location-dot"></i>
+                <span id="locationText">Locating...</span>
+              </div>
+            </div>
+            <div class="weather-divider"></div>
+            <div
+              class="weather-right"
+              id="weatherWidget"
+              title="Click for more weather details"
+            >
+              <div class="weather-icon" id="weatherIcon">
+                <i class="fa-solid fa-cloud"></i>
+              </div>
+              <div class="weather-temp" id="weatherTemp">--&deg;</div>
+              <div class="weather-condition" id="weatherCondition">Loading</div>
+              <div class="weather-minmax" id="weatherMinMax"></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="card glass-card greeting">
+          <svg class="border-trace">
+            <rect
+              x="1"
+              y="1"
+              width="calc(100% - 2px)"
+              height="calc(100% - 2px)"
+              rx="18"
+              pathLength="100"
+            ></rect>
+          </svg>
+          <h1 id="greetingText">Hello!</h1>
+          <p>Here's everything you need for today.</p>
+        </div>
+
+        <div class="quote-standalone">
+          <p class="quote-text" id="quoteText"></p>
+          <p class="quote-author" id="quoteAuthor"></p>
+        </div>
+      </div>
+
+      <div class="col" id="rightCol">
+        <div class="search-bar">
+          <button class="engine-btn" id="engineBtn">
+            <i class="fa-brands fa-google" id="engineIcon"></i>
+            <span id="engineLabel">Google</span>
+            <i class="fa-solid fa-chevron-down" style="font-size: 0.6rem"></i>
+          </button>
+          <div class="engine-dropdown" id="engineDropdown">
+            <div
+              class="engine-option"
+              data-engine="Google"
+              data-icon="fa-brands fa-google"
+              data-url="https://www.google.com/search?q="
+            >
+              <i class="fa-brands fa-google"></i> Google
+            </div>
+            <div
+              class="engine-option"
+              data-engine="Bing"
+              data-icon="fa-brands fa-microsoft"
+              data-url="https://www.bing.com/search?q="
+            >
+              <i class="fa-brands fa-microsoft"></i> Bing
+            </div>
+            <div
+              class="engine-option"
+              data-engine="DuckDuckGo"
+              data-icon="fa-solid fa-shield-halved"
+              data-url="https://duckduckgo.com/?q="
+            >
+              <i class="fa-solid fa-shield-halved"></i> DuckDuckGo
+            </div>
+            <div
+              class="engine-option"
+              data-engine="Yahoo"
+              data-icon="fa-brands fa-yahoo"
+              data-url="https://search.yahoo.com/search?p="
+            >
+              <i class="fa-brands fa-yahoo"></i> Yahoo
+            </div>
+          </div>
+          <i class="fa-solid fa-magnifying-glass lead"></i>
+          <input
+            type="text"
+            id="searchInput"
+            placeholder="Search anything here..."
+            autocomplete="off"
+          />
+          <button id="voiceBtn" class="voice-btn" aria-label="Voice search">
+            <i class="fa-solid fa-microphone"></i>
+          </button>
+          <button id="searchBtn">Search</button>
+        </div>
+
+        <div class="portal-row">
+          <button class="portal-btn" id="myIubBtn">
+            <i class="fa-solid fa-user"></i>My IUB
+          </button>
+          <button class="portal-btn" id="eportalBtn">
+            <i class="fa-solid fa-graduation-cap"></i>E-Portal
+          </button>
+          <button class="portal-btn" id="lmsBtn">
+            <i class="fa-solid fa-book"></i>LMS
+          </button>
+        </div>
+
+        <div class="divider">IUB Help Centre</div>
+
+        <div class="help-row">
+          <div class="help-card" id="liveChatBtn">
+            <i class="fa-solid fa-comments"></i>
+            <p>Live Chat</p>
+          </div>
+          <div class="help-card" id="announcementBtn">
+            <i class="fa-solid fa-bullhorn"></i>
+            <p>Announcements</p>
+          </div>
+          <div class="help-card" id="contactBtn">
+            <i class="fa-solid fa-phone"></i>
+            <p>Contact No#</p>
+          </div>
+        </div>
+
+        <div class="bottom-row">
+          <div class="slider-wrap">
+            <button
+              class="slide-arrow slide-arrow-left"
+              id="slidePrev"
+              aria-label="Previous slide"
+            >
+              &#8249;
+            </button>
+            <div class="card slider-card" id="sliderCard">
+              <a id="slideLink" href="#" target="_self">
+                <img id="slideImg" src="" alt="IUB announcement" />
+              </a>
+              <div class="slide-dots" id="slideDots"></div>
+            </div>
+            <button
+              class="slide-arrow slide-arrow-right"
+              id="slideNext"
+              aria-label="Next slide"
+            >
+              &#8250;
+            </button>
+          </div>
+          <div class="card shortcuts-card">
+            <div class="shortcuts-icons" id="shortcutsIcons"></div>
+          </div>
+        </div>
+
+        <div class="divider">More Apps</div>
+        <div class="more-apps-row">
+          <a
+            class="more-app-btn"
+            href="https://play.google.com/store/apps/details?id=com.AdeebTechLab.IUBportals"
+            target="_self"
+            ><i class="fa-solid fa-mobile-screen"></i> Mobile</a
+          >
+          <a
+            class="more-app-btn"
+            href="https://chromewebstore.google.com/search/iub"
+            target="_self"
+            ><i class="fa-brands fa-chrome"></i> Extension</a
+          >
+          <a
+            class="more-app-btn"
+            href="https://apps.microsoft.com/detail/9pl653tpwdch?hl=en-US&gl=PK"
+            target="_self"
+            ><i class="fa-solid fa-desktop"></i> Software</a
+          >
+        </div>
+      </div>
+    </div>
+   </div>
+   </div>
+<!-- Social Footer -->
+    <div class="global-footer">
+      <span class="social-label">Connect with IUB</span>
+      <div class="social-pills">
+        <a
+          class="social-pill"
+          href="https://www.facebook.com/iubwp"
+          target="_self"
+          ><i class="fa-brands fa-facebook"></i
+        ></a>
+        <a class="social-pill" href="https://x.com/theiubwp" target="_self"
+          ><i class="fa-brands fa-x-twitter"></i
+        ></a>
+        <a
+          class="social-pill"
+          href="https://www.instagram.com/theiubwp"
+          target="_self"
+          ><i class="fa-brands fa-instagram"></i
+        ></a>
+        <a
+          class="social-pill"
+          href="https://www.linkedin.com/school/the-islamia-university-of-bahawalpur/posts/?feedView=all"
+          target="_self"
+          ><i class="fa-brands fa-linkedin"></i
+        ></a>
+        <a
+          class="social-pill"
+          href="https://www.youtube.com/channel/UCaB7NBp3x31nVU2VoLS1a1Q"
+          target="_self"
+          ><i class="fa-brands fa-youtube"></i
+        ></a>
+        <a
+          class="social-pill"
+          href="https://www.whatsapp.com/channel/0029VaCyEBo3mFYBt94MvG18"
+          target="_self"
+          ><i class="fa-brands fa-whatsapp"></i
+        ></a>
+      </div>
+    </div>
+
+    <!-- Name Capture Modal -->
+    <div class="modal-overlay" id="nameModal">
+      <div class="modal-box">
+        <h3>What's your name?</h3>
+        <p>We'll greet you personally every time you open a new tab.</p>
+        <input
+          type="text"
+          id="nameInput"
+          placeholder="Your Good Name..."
+          maxlength="20"
+        />
+        <button id="saveNameBtn">Save</button>
+      </div>
+    </div>
+
+    <!-- Bookmarks Panel -->
+    <div class="side-panel" id="bookmarksPanel">
+      <div class="panel-header">
+        <h3>Bookmarks</h3>
+        <button class="panel-close" id="bookmarksClose">&times;</button>
+      </div>
+      <form id="bookmarkForm" class="panel-form">
+        <input
+          type="text"
+          id="bookmarkName"
+          placeholder="Specific link name (e.g. CS-301 Course Page)"
+          required
+        />
+        <input
+          type="url"
+          id="bookmarkUrl"
+          placeholder="Direct URL (not homepage)"
+          required
+        />
+        <textarea
+          id="bookmarkNote"
+          placeholder="Why you saved this"
+          rows="2"
+        ></textarea>
+        <select id="bookmarkCategory">
+          <option value="Academic">Academic</option>
+          <option value="Study">Study</option>
+          <option value="Social">Social</option>
+          <option value="Other">Other</option>
+        </select>
+        <button type="submit" class="panel-submit">Save Bookmark</button>
+      </form>
+      <div id="bookmarksList" class="panel-list"></div>
+    </div>
+
+    <!-- AI Tools Panel -->
+<div class="side-panel" id="aiToolsPanel">
+  <div class="panel-header">
+    <h3>AI Tools</h3>
+    <button class="panel-close" id="aiToolsClose">&times;</button>
+  </div>
+  <div class="ai-tools-grid" id="aiToolsGrid"></div>
+</div>
+
+    <!-- Google Apps Panel -->
+    <div class="side-panel" id="googleAppsPanel">
+      <div class="panel-header">
+        <h3>Google Apps</h3>
+        <button class="panel-close" id="googleAppsClose">&times;</button>
+      </div>
+
+      <div class="google-apps-grid" id="googleAppsGrid"></div>
+      
+    </div>
+
+    <!-- To-Do Panel -->
+    <div class="side-panel panel-left" id="todoPanel">
+      <div class="panel-header">
+        <h3>My Notes</h3>
+        <button class="panel-close" id="todoClose">&times;</button>
+      </div>
+      <form id="todoForm" class="panel-form">
+        <input
+          type="text"
+          id="todoInput"
+          placeholder="Enter your note..."
+          required
+        />
+        <input type="time" id="todoTimeInput" />
+        <button type="submit" class="panel-submit">Save Note</button>
+      </form>
+      <div id="todoList" class="panel-list"></div>
+    </div>
+
+    <script src="script.js"></script>
+  </body>
+</html>
