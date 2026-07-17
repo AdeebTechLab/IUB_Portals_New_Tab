@@ -19,19 +19,6 @@
 
 ---
 
-# 📸 Preview
-
-> **Add screenshots here**
-
-```
-assets/screenshots/home.png
-assets/screenshots/dark-mode.png
-assets/screenshots/bookmarks.png
-assets/screenshots/settings.png
-```
-
----
-
 # ✨ Features
 
 ## 🎓 Academic Portal
