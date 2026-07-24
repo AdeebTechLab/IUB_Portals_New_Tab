@@ -1,78 +1,201 @@
-# 📌 IUB Portals New Tab
+<div align="center">
 
-🧠 **One-Click Access to All IUB Portals!**
+# 🎓 IUB New Tab
 
-A lightweight and user-friendly Chrome New Tab extension that brings all the important Islamic University of **Bangladesh (IUB)** portals together  so you can reach your e-Portal, LMS, My IUB, and more with just one click! 
+### A Modern & Personalized Chrome New Tab Dashboard for Students of
+## **The Islamia University of Bahawalpur**
 
----
+<img width="1911" height="955" alt="Screenshot 2026-07-17 162744" src="https://github.com/user-attachments/assets/e1272b14-1d18-46f3-ab5a-645fc1bb3676" />
 
-## 🚀 Features
+<br>
 
-✨ One-click access to all IUB portals  
-✨ Clean and fast interface  
-✨ Built with HTML, JavaScript and Chrome Extension tech  
-✨ Open-source  customize however you like
+![Chrome Extension](https://img.shields.io/badge/Chrome%20Extension-Manifest%20V3-blue?style=for-the-badge&logo=googlechrome)
+![HTML](https://img.shields.io/badge/HTML5-E34F26?style=for-the-badge&logo=html5&logoColor=white)
+![CSS](https://img.shields.io/badge/CSS3-1572B6?style=for-the-badge&logo=css3)
+![JavaScript](https://img.shields.io/badge/JavaScript-ES6-yellow?style=for-the-badge&logo=javascript)
+![MIT License](https://img.shields.io/badge/License-MIT-green?style=for-the-badge)
 
----
-
-## 🛠️ Tech Stack
-
-🧩 **Languages:**  
-- HTML  
-- JavaScript  
-- CSS
-
-📁 **Structure:**  
-- `index.html` — UI  
-- `script.js` — Logic  
-- `manifest.json` — Chrome extension config  
-- `icons/` — Visual assets
+</div>
 
 ---
 
-## 💡 How It Works
+# ✨ Features
 
-👉 Install the extension in your Chrome browser  
-👉 Open a new tab  
-👉 All IUB portal links appear instantly for fast access
+## 🎓 Academic Portal
 
-No more searching — everything you need is ready on your browser’s new tab!
-
----
-
-<img width="640" height="400" alt="image" src="https://github.com/user-attachments/assets/cea8e9b3-695e-4416-b40a-206de397610e" />
-
-
-## 📦 Installation
-
-1. Clone this repository  
-2. Go to `https://chromewebstore.google.com/search/IUB%20Portals%20New%20Tab` for open the **Iub Portal** 
+- My IUB
+- LMS
+- E-Portal
+- Help Center
+- University Announcements
+- Fee Structure
+- Merit Lists
 
 ---
 
-## ⭐ Why Use This?
+## 🌤 Live Widgets
 
-🔹 Saves time accessing educational portals  
-🔹 Helps students and staff stay organized  
-🔹 Easy to build upon for any portal ecosystem
-
----
-
-## 📜 License
-
-Released under the **MIT License**.  
-Feel free to use, modify, and improve! 🚀
+- 📍 Current Location
+- 🌦 Live Weather
+- 🕒 Digital Clock
+- 👋 Smart Greetings
+- 💬 Islamic & Motivational Quotes
 
 ---
 
-## 📣 Feedback & Contributions
+## 🔍 Smart Search
 
-Got ideas? Bugs? Want to help make it even better?  
-Feel free to open an issue or submit a PR! ❤️
+Search directly from your new tab using:
+
+- Google
+- Bing
+- DuckDuckGo
+- Yahoo
+
+🎤 Voice Search Supported
 
 ---
 
-✨ *Powered by Adeeb Technology Lab* ✨
+## 📚 Productivity
+
+- ✅ To-Do List
+- 🔖 Bookmarks Manager
+- 📝 Notes
+- ⚡ Custom Shortcuts
+- 🤖 AI Tools Collection
 
 ---
 
+## 🤖 AI Hub
+
+Quick access to:
+
+- ChatGPT
+- Gemini
+- Claude
+- Copilot
+- Perplexity
+
+Users can also add their own custom AI tools.
+
+---
+
+## 🎨 Personalization
+
+- Light & Dark Mode
+- Multiple Color Themes
+- Custom Wallpapers
+- Adjustable Background Opacity
+- Beautiful Glassmorphism UI
+- Responsive Layout
+
+---
+
+# 🚀 Tech Stack
+
+| Technology | Purpose |
+|------------|---------|
+| HTML5 | Structure |
+| CSS3 | Styling |
+| JavaScript (ES6) | Functionality |
+| Chrome Extension Manifest V3 | Extension Platform |
+| Font Awesome | Icons |
+| Google Fonts | Typography |
+| Local Storage | User Data |
+
+---
+
+# 📂 Project Structure
+
+```
+IUB-NewTab
+│
+├── assets/
+│   ├── icons/
+│   ├── screenshots/
+│   ├── wallpapers/
+│   └── images/
+│
+├── index.html
+├── style.css
+├── script.js
+├── manifest.json
+└── README.md
+```
+
+
+# 💾 Data Storage
+
+All user data is stored locally using:
+
+- Bookmarks
+- Notes
+- Shortcuts
+- Theme
+- Wallpaper
+- AI Tools
+
+No personal data is stored on any external server.
+
+---
+
+# 🌐 APIs Used
+
+- Open Meteo Weather API
+- BigDataCloud Reverse Geocoding API
+- Web Speech API
+- Google Favicon Service
+
+---
+
+
+# 🤝 Contributing
+
+Contributions are welcome.
+
+1. Fork the repository
+2. Create a feature branch
+
+```bash
+git checkout -b feature-name
+```
+
+3. Commit your changes
+
+```bash
+git commit -m "Added new feature"
+```
+
+4. Push
+
+```bash
+git push origin feature-name
+```
+
+5. Open a Pull Request
+
+---
+
+# 📜 License
+
+This project is licensed under the **MIT License**.
+
+---
+
+# ❤️ Acknowledgements
+
+- The Islamia University of Bahawalpur
+- Font Awesome
+- Google Fonts
+- Open Meteo
+- BigDataCloud
+
+---
+
+<div align="center">
+
+## ⭐ If you like this project, don't forget to Star the Repository!
+
+Made with ❤️
+
+</div>

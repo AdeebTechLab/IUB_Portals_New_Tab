@@ -1,0 +1,14 @@
+{
+  "manifest_version": 3,
+  "name": "IUB New Tab",
+  "description": "A personalized new tab dashboard for IUB students: quick portal access, live location, search, bookmarks, to-do list, AI tools, and more.",
+  "version": "1.0",
+  "chrome_url_overrides": {
+    "newtab": "index.html"
+  },
+  "permissions": ["storage", "geolocation"],
+  "host_permissions": ["https://api.bigdatacloud.net/*", "https://api.open-meteo.com/*"],
+  "icons": {
+    "128": "assets/logo.png"
+  }
+}
