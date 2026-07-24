@@ -1,1845 +1,429 @@
-<!DOCTYPE html>
-<html lang="en">
+<!doctype html>
+<html lang="en" data-theme="light">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>IUB Dashboard</title>
-    <link rel="icon" type="image/png" href="logo.png" />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap"
-      rel="stylesheet"
-    />
+    <title>IUB New Tab</title>
+    <link rel="icon" type="image/png" href="assets/logo.png" />
+    <link href="https://fonts.googleapis.com/css2?family=Sora:wght@500;600;700&family=Inter:wght@400;500;600&family=Poppins:wght@500;600;700&family=Handjet:wght@400;700&display=swap" rel="stylesheet">
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
     />
+    <link rel="stylesheet" href="style.css" />
   </head>
-  <style>
-    :root {
-      --bg: #f4fbff;
-      --mustard: #222c72;
-      --navy: #222c72;
-      --card-bg: #ffffff;
-      --border: #e0ab1d;
-      --shadow: 0 10px 18px rgba(23, 38, 83, 0.06);
-      --accent-gold: #ffd200;
-      --more-icon-filter: drop-shadow(0 4px 12px rgba(34, 44, 114, 0.22)) sepia(0.9) saturate(3.2) hue-rotate(200deg);
-    }
-
-    body.dark-mode {
-      --bg: #12121c;
-      --card-bg: #1f1f28;
-      --border: rgba(255, 255, 255, 0.1);
-      --shadow: 0 10px 18px rgba(0, 0, 0, 0.6);
-      --navy: #c4c9e1;
-      --mustard: #c9a24b;
-      --more-icon-filter: drop-shadow(0 4px 12px rgba(0, 0, 0, 0.35)) sepia(0.85) saturate(2.2) hue-rotate(20deg);
-    }
-
-    body.dark-mode {
-      color: #ffffff;
-    }
-
-    body.dark-mode header h1 {
-      color: #ffffff;
-    }
-
-    body.dark-mode .date-box,
-    body.dark-mode .location-box,
-    body.dark-mode .weather-item,
-    body.dark-mode .portal-btn,
-    body.dark-mode .help-card p,
-    body.dark-mode .more-button p {
-      color: #ffffff;
-    }
-
-    body.dark-mode input::placeholder {
-      color: #999;
-    }
-
-    body.dark-mode #searchInput {
-      color: #ffffff;
-    }
-
-    body.dark-mode #googleModal {
-      background: #2d2d2d;
-      color: #ffffff;
-    }
-
-    body.dark-mode .modal-header h3 {
-      color: #ffffff;
-    }
-
-    body.dark-mode .app-item p {
-      color: #ffffff;
-    }
-
-    body.dark-mode .ai-panel,
-    body.dark-mode .todo-panel {
-      background: #151927;
-      color: #f4f5ff;
-      box-shadow: -12px 0 24px rgba(0, 0, 0, 0.6);
-    }
-
-    body.dark-mode .todo-panel {
-      box-shadow: 12px 0 24px rgba(0, 0, 0, 0.6);
-    }
-
-    body.dark-mode .ai-panel-btn {
-      background: rgba(255, 255, 255, 0.03);
-      border-color: rgba(255, 255, 255, 0.1);
-      color: #f4f5ff;
-      box-shadow: none;
-    }
-
-    body.dark-mode .time-box {
-      background: #3d3d3d;
-      color: #ffffff;
-    }
-
-    body.dark-mode .help-card {
-      background: #1f212a;
-      border-color: rgba(255, 255, 255, 0.08);
-      box-shadow: 0 10px 16px rgba(0, 0, 0, 0.6);
-    }
-
-    body.dark-mode .portal-btn {
-      background: var(--mustard);
-      border-color: transparent;
-      color: #fff;
-      box-shadow: 0 8px 18px rgba(0, 0, 0, 0.5);
-      letter-spacing: 0.04em;
-    }
-
-    body.dark-mode .header-toggle-btn,
-    body.dark-mode #googleBtn {
-      background: transparent;
-      border-color: transparent;
-      color: #fff;
-      box-shadow: 0 8px 18px rgba(0, 0, 0, 0.5);
-      letter-spacing: 0.04em;
-    }
-
-    body.dark-mode .divider span {
-      color: #f4f5ff;
-      background: rgba(255, 255, 255, 0.05);
-    }
-
-    body.dark-mode .help-centre {
-      color: #ffffff;
-    }
-
-    body.dark-mode .search-container {
-      background: rgba(255, 255, 255, 0.04);
-      border-color: rgba(255, 255, 255, 0.12);
-      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.7);
-    }
-
-    body.dark-mode #voiceBtn,
-    body.dark-mode #searchBtn {
-      color: #999;
-    }
-
-    body.dark-mode .dot {
-      background-color: #555;
-    }
-
-    body.dark-mode .dot.active {
-      background-color: #e0ab1d;
-    }
-
-    body.dark-mode .modal-close {
-      color: #ffffff;
-    }
-
-    body.dark-mode .modal-close:hover {
-      color: var(--mustard);
-    }
-
-    body.dark-mode .social-icon {
-      color: var(--mustard);
-    }
-
-    body.dark-mode .social-icon:hover {
-      color: #ffffff;
-    }
-
-    body.dark-mode .todo-header h3 {
-      color: #fff;
-    }
-    body.dark-mode .todo-input, body.dark-mode .todo-time {
-      background: rgba(255,255,255,0.05);
-      border-color: rgba(255,255,255,0.1);
-      color: #fff;
-      color-scheme: dark;
-    }
-    body.dark-mode .todo-item {
-      background: rgba(255,255,255,0.03);
-      border-color: rgba(255,255,255,0.1);
-    }
-    body.dark-mode .todo-text {
-      color: #f4f5ff;
-    }
-    body.dark-mode .todo-time-display {
-      color: #aaa;
-    }
-
-    body.dark-mode .shortcut-icon {
-      background: rgba(255,255,255,0.05);
-      border-color: rgba(255,255,255,0.1);
-      box-shadow: 0 4px 10px rgba(0,0,0,0.4);
-    }
-    body.dark-mode .add-shortcut,
-    body.dark-mode .shortcut-item p {
-      color: #f4f5ff;
-    }
-
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-      font-family: "Poppins", sans-serif;
-    }
-
-    /* Full screen centering */
-body {
-  background: var(--bg);
-  margin: 0;
-  padding: 0;
-  height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-/* Main container */
-.main {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  align-items: center;
-  gap: 3.5vw;
-  width: 90vw;
-  max-width: 1050px;
-  min-width: 300px;
-  height: auto;
-}
-
-/* Shared section styles */
-.left-section,
-.right-section {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: space-between;
-  flex: 1 1 300px; /* auto shrink/grow with min width */
-  min-width: 250px;
-  max-width: 600px;
-  height: auto;
-  padding: 5vh 2vw;
-}
-
-/* Optional: Specific left-section tweaks */
-.left-section {
-   gap: 14px;
-   margin-top: 18px;
-}
-
-.right-section {
-  gap: 14px;
-  margin-top: 18px;
-}
-
-
-
-
-  /* corner buttone */
-    .corner-btn {
-      position: fixed;
-      top: 20px;
-      padding: 10px 16px;
-      border-radius: 11px;
-      background: transparent;
-      color: var(--navy);
-      font-weight: 600;
-      font-size: 13px;
-      border: none;
-      cursor: pointer;
-      z-index: 999;
-      transition: transform 0.2s ease;
-      box-shadow: 0 6px 14px rgba(34, 44, 114, 0.25);
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      gap: 6px;
-      min-width: 130px;
-      white-space: nowrap;
-    }
-    .corner-btn:hover {
-      transform: translateY(-2px);
-    }
-    .left {
-      left: 20px;
-    }
-    .right {
-      right: 20px;
-    }
-
-    /* ensure corner icons match size */
-    .header-toggle-btn i,
-    #googleBtn i {
-      font-size: 18px;
-      line-height: 1;
-    }
-
-    header {
-      position: absolute;
-      top: 20px;
-      left: 50%;
-      transform: translateX(-50%);
-      text-align: center;
-      z-index: 1;
-    }
-    .header-row {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 13px;
-    }
-    .logo {
-      width: 58px;
-      height: 58px;
-      border-radius: 11px;
-    }
-    .header-row h1 {
-      font-size: 21px;
-      font-weight: 700;
-      color: black;
-    }
-    .header-toggle-btn {
-      border: none;
-      border-radius: 999px;
-      padding: 6px 14px;
-      background: transparent;
-      color: var(--navy);
-      display: flex;
-      align-items: center;
-      gap: 6px;
-      font-size: 0.85rem;
-      font-weight: 600;
-      letter-spacing: 0.05em;
-      cursor: pointer;
-      transition: transform 0.2s ease, box-shadow 0.2s ease;
-    }
-    .header-toggle-btn:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 8px 14px rgba(14, 33, 89, 0.15);
-    }
-
-
-
-
-    /* google app  */
-    #googleBtn {
-      letter-spacing: 0.03em;
-    }
-
-    #googleModal {
-      display: none;
-      position: fixed;
-      top: 80px;
-      right: 20px;
-      width: 300px;
-      height: calc(100vh - 200px);
-      background: #fff;
-      border-radius: 11px;
-      box-shadow: 0 0 12px rgba(0,0,0,0.2);
-      padding: 18px;
-      z-index: 1000;
-      overflow: hidden;
-    }
-
-    .modal-content {
-      max-height: 100%;
-      overflow-y: auto;
-      overflow-x: hidden;
-      padding-right: 7px;
-      position: relative;
-    }
-
-
-
-
-    .app-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 14px;
-      margin-top: 9px;
-    }
-
-    .app-item {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      cursor: pointer;
-      transition: transform 0.2s;
-    }
-
-    .app-item img {
-      width: 52px;
-      height: 52px;
-      object-fit: contain;
-      border-radius: 12px;
-      padding: 8px;
-    
-    }
-
-    .app-item:hover {
-      transform: scale(1.05);
-    }
-
-    .app-item img {
-      width: 52px;
-      height: 52px;
-      margin-bottom: 6px;
-    }
-
-    .app-item p {
-      font-size: 0.72rem;
-      color: #333;
-      text-align: center;
-      margin: 0;
-    }
-
-    .modal-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      gap: 13px;
-      margin-bottom: 13px;
-    }
-
-    .modal-header h3 {
-      font-size: 1.05rem;
-      color: var(--navy);
-      margin: 0;
-    }
-
-    .modal-close {
-      background: none;
-      border: none;
-      font-size: 1.5rem;
-      line-height: 1;
-      color: var(--navy);
-      cursor: pointer;
-      padding: 0;
-      transition: color 0.3s ease, transform 0.2s ease;
-    }
-    .modal-close:hover {
-      color: var(--mustard);
-      transform: scale(1.2);
-    }
-
-
-    /* AI panel */
-    .ai-panel {
-      position: fixed;
-      top: 0;
-      right: -360px;
-      width: 340px;
-      height: 100vh;
-      background: #ffffff;
-      box-shadow: -12px 0 30px rgba(0, 0, 0, 0.2);
-      padding: 26px 24px;
-      display: flex;
-      flex-direction: column;
-      gap: 20px;
-      transition: right 0.3s ease;
-      z-index: 1001;
-    }
-
-    .ai-panel.open {
-      right: 0;
-    }
-
-    /* ToDo panel */
-    .todo-panel {
-      position: fixed;
-      top: 0;
-      left: -360px;
-      width: 340px;
-      height: 100vh;
-      background: #ffffff;
-      box-shadow: 12px 0 30px rgba(0, 0, 0, 0.2);
-      padding: 26px 24px;
-      display: flex;
-      flex-direction: column;
-      gap: 20px;
-      transition: left 0.3s ease;
-      z-index: 1001;
-      overflow-y: auto;
-    }
-
-    .todo-panel.open {
-      left: 0;
-    }
-
-    .todo-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
-
-    .todo-header h3 {
-      margin: 0;
-      color: var(--navy);
-      font-size: 1.25rem;
-      letter-spacing: 0.07em;
-      text-transform: uppercase;
-    }
-
-    .todo-form {
-      display: flex;
-      flex-direction: column;
-      gap: 12px;
-    }
-
-    .todo-input, .todo-time {
-      width: 100%;
-      padding: 10px 14px;
-      border-radius: 8px;
-      border: 1px solid rgba(34,44,114,0.2);
-      font-size: 0.9rem;
-      outline: none;
-      font-family: inherit;
-    }
-
-    .todo-submit {
-      padding: 10px;
-      background: var(--navy);
-      color: white;
-      border: none;
-      border-radius: 8px;
-      cursor: pointer;
-      font-weight: 600;
-      transition: background 0.2s;
-    }
-
-    .todo-submit:hover {
-      background: var(--mustard);
-    }
-
-    .todo-list {
-      list-style: none;
-      padding: 0;
-      margin: 0;
-      display: flex;
-      flex-direction: column;
-      gap: 10px;
-    }
-
-    .todo-item {
-      background: #f8fbff;
-      border: 1px solid rgba(34,44,114,0.15);
-      border-radius: 10px;
-      padding: 12px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
-
-    .todo-content {
-      display: flex;
-      flex-direction: column;
-      gap: 4px;
-      overflow: hidden;
-    }
-
-    .todo-text {
-      font-size: 0.95rem;
-      color: #05070f;
-      font-weight: 500;
-      word-wrap: break-word;
-    }
-
-    .todo-time-display {
-      font-size: 0.75rem;
-      color: #4d5272;
-    }
-
-    .todo-delete {
-      background: none;
-      border: none;
-      color: #dc3545;
-      cursor: pointer;
-      font-size: 1.1rem;
-      padding: 5px;
-      transition: transform 0.2s;
-    }
-
-    .todo-delete:hover {
-      transform: scale(1.1);
-    }
-
-    .ai-panel-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
-
-    .ai-panel-header h3 {
-      margin: 0;
-      color: var(--navy);
-      font-size: 1.25rem;
-      letter-spacing: 0.07em;
-      text-transform: uppercase;
-    }
-
-    .ai-panel-buttons {
-      display: flex;
-      flex-direction: column;
-      gap: 12px;
-    }
-
-    .ai-panel-btn {
-      display: flex;
-      align-items: center;
-      gap: 14px;
-      padding: 14px 16px;
-      border-radius: 14px;
-      border: 1px solid rgba(34,44,114,0.15);
-      background: #f8fbff;
-      cursor: pointer;
-      transition: transform 0.2s ease, box-shadow 0.2s ease;
-      text-align: left;
-      box-shadow: inset 0 1px 0 rgba(255,255,255,0.6);
-    }
-
-    .ai-panel-btn:hover {
-      transform: translateX(-2px);
-      box-shadow: 6px 10px 20px rgba(34,44,114,0.15);
-    }
-
-    .ai-icon {
-      width: 42px;
-      height: 42px;
-      border-radius: 12px;
-      background: #eef2ff;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 20px;
-      color: var(--navy);
-    }
-
-    .ai-panel-btn span {
-      display: flex;
-      flex-direction: column;
-      gap: 3px;
-    }
-
-    .ai-panel-btn strong {
-      display: block;
-      font-size: 1rem;
-      color: #05070f;
-    }
-
-    .ai-panel-btn span small {
-      color: #4d5272;
-      font-size: 0.75rem;
-      line-height: 1.4;
-    }
-
-
-
-
-   .time-section{
-  display:flex;
-  align-items:center;
-  gap:22px;
-}
-
-/* time boxes row */
-.time-row{
-  display:flex;
-  gap:10px;
-}
-
-/* time boxes */
-.time-box{
-  position:relative;
-  width:85px;
-  height:85px;
-  background:#f2f2f2;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  font-size:48px;
-  font-weight:800;
-  border-radius:14px;
-  color:#0a0f1a;
-  box-shadow: inset 0 3px 0 rgba(255,255,255,0.8),
-              inset 0 -3px 0 rgba(0,0,0,0.08),
-              0 6px 12px rgba(0,0,0,0.08);
-}
-
-/* flip line */
-.time-box::after{
-  content:"";
-  position:absolute;
-  top:50%;
-  left:0;
-  width:100%;
-  height:2px;
-  background:#d0d0d0;
-}
-
-/* right side info */
-.info-box{
-  display:flex;
-  flex-direction:column;
-  gap:8px;
-}
-
-/* date and location row */
-.date-location-row{
-  display:flex;
-  flex-direction:column;
-  gap:8px;
-  align-items:flex-start;
-  font-weight:500;
-  font-size:13px;
-  color:#333;
-}
-
-/* date */
-.date-box{
-  font-weight:700;
-  color:#222;
-  font-size:12px;
-  white-space:nowrap; /* keep date on a single line */
-}
-
-/* weather + location */
-.location-temp-row{
-  display:flex;
-  gap:12px;
-  align-items:center;
-  font-size:13px;
-}
-
-.temperature{
-  display:flex;
-  align-items:center;
-  gap:4px;
-  font-weight:400;
-}
-
-.weather-item{
-  background:transparent;
-  color:#333;
-  padding:0;
-  box-shadow:none;
-  font-weight:400;
-  font-size:13px;
-}
-
-.weather-item i{
-  color:#ff7a00;
-  margin-right: 3px;
-}
-
-.location-box{
-  display:flex;
-  align-items:center;
-  gap:5px;
-  font-weight:400;
-  color:#333;
-  font-size:12px;
-  white-space:nowrap; /* keep icon and label together */
-}
-
-.location-box i{
-  color:#ff7a00;
-}
-    .help-row {
-      display: flex;
-      gap: 16px;
-      width: 100%;
-      justify-content: space-between;
-    }
-    .help-card {
-      background: linear-gradient(145deg, rgba(255,255,255,0.96), rgba(241,247,255,0.9));
-      box-shadow: 0 10px 18px rgba(15, 23, 42, 0.08);
-      border: 1px solid rgba(34,44,114,0.2);
-      border-radius: 14px;
-      flex: 1 1 150px;
-      min-width: 110px;
-      max-width: 170px;
-      min-height: 100px;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      padding: 12px 10px;
-      text-align: center;
-      gap: 6px;
-      cursor: pointer;
-      transition: transform 0.3s ease, border-color 0.3s ease;
-      overflow: hidden;
-    }
-    .help-card:hover {
-      transform: translateY(-3px);
-      border-color: var(--navy);
-    }
-    .help-card img {
-      width: 34px;
-      height: 34px;
-      flex-shrink: 0;
-      filter: drop-shadow(0 4px 12px rgba(0,0,0,0.16)) sepia(0.7) saturate(2.5) hue-rotate(-10deg);
-    }
-
-    .help-card p {
-      font-size: 0.7rem;
-      margin: 0;
-      font-weight: 400;
-      color: #222c72;
-      letter-spacing: 0.2px;
-    }
-
-    .portal-row {
-      display: flex;
-      flex-wrap: nowrap;
-      gap: 14px;
-      width: 100%;
-      justify-content: space-between;
-      margin-top: 22px;
-      margin-bottom: 12px;
-      align-items: stretch;
-    }
-    .portal-btn {
-      background: linear-gradient(135deg, var(--navy), #3a4aa5 70%);
-      color: #ffffff;
-      border: 1px solid rgba(34, 44, 114, 0.45);
-      border-radius: 12px;
-      min-height: 44px;
-      flex: 1;
-      font-weight: 600;
-      font-size: 14px;
-      cursor: pointer;
-      box-shadow: 0 12px 20px rgba(34, 44, 114, 0.22);
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
-    }
-    .portal-btn:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 20px 28px rgba(34, 44, 114, 0.28);
-    }
-    .portal-btn:active {
-      transform: translateY(1px);
-      box-shadow: 0 8px 14px rgba(34, 44, 114, 0.25);
-    }
-
-    
-
-   
-
-  /* Search bar */
-  .search-container {
-  display: flex;
-  align-items: center;
-  width: 100%;
-  max-width: 660px;
-  height: 46px;
-  border-radius: 999px;
-  padding: 4px 16px;
-  background: linear-gradient(125deg, #ffffff, #f4f8ff 70%);
-  border: 2px solid rgba(34,44,114,0.2);
-  box-shadow: 0 10px 24px rgba(34,44,114,0.15);
-  margin-bottom: 5px;
-  gap: 8px;
-}
-
-#searchInput {
-  flex: 1;
-  border: none;
-  outline: none;
-  padding: 8px 12px;
-  font-size: 16px;
-  color: #111;
-  font-style: normal;
-  background: transparent;
-  font-weight: 500;
-}
-
-.search-container button {
-  border: none;
-  background: transparent;
-  cursor: pointer;
-  transition: transform 0.2s ease, background 0.2s ease;
-}
-
-.icon-btn {
-  width: 48px;
-  height: 48px;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: var(--navy);
-  background: rgba(34,44,114,0.08);
-  border: 1px solid transparent;
-}
-
-.icon-btn.accent {
-  background: var(--navy);
-  color: #fff;
-  border-color: var(--navy);
-}
-
-.icon-btn:hover {
-  transform: translateY(-1px);
-  background: rgba(34,44,114,0.2);
-}
-
-.icon-btn.active {
-  background: var(--mustard);
-  color: #fff;
-}
-
-.search-actions {
-  display: flex;
-  align-items: center;
-  gap: 6px;
-}
-
-.ai-mode-btn {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
-  border: 1px solid rgba(34,44,114,0.35);
-  background: rgba(34,44,114,0.08);
-  color: var(--navy);
-}
-
-.ai-mode-btn i {
-  font-size: 1rem;
-}
-
-.ai-mode-btn.active {
-  background: var(--navy);
-  color: #fff;
-  border-color: var(--navy);
-}
-
-#voiceBtn {
-  background: none;
-  border: none;
-  color: #666;
-  width: 34px;
-  cursor: pointer;
-  transition: color 0.3s ease, transform 0.2s ease;
-}
-
-#voiceBtn:hover {
-  color: var(--navy);
-  transform: scale(1.1);
-}
-
-#searchBtn {
-  background: none;
-  border: none;
-  color: #222c72;
-  width: 34px;
-  cursor: pointer;
-  transition: color 0.3s ease, transform 0.2s ease;
-}
-
-#searchBtn:hover {
-  color: var(--mustard);
-  transform: scale(1.15);
-}
-
-#voiceBtn i,
-#searchBtn i {
-  font-size: 18px;
-}
-
-
-    /* slider */
-
-    .carousel-container {
-      position: relative;
-      width: 100%;
-      max-width: 320px;
-      margin-top: 0px;
-    }
-    .carousel-container img {
-      width: 100%;
-      height: auto;
-      border-radius: 14px;
-      object-fit: cover;
-      box-shadow: 0 10px 20px rgba(15, 23, 42, 0.15);
-    }
-    .carrow {
-      position: absolute;
-      top: 50%;
-      transform: translateY(-50%);
-      width: 40px;
-      height: 40px;
-      background: var(--mustard);
-      color: #fff;
-      border: 1px solid transparent;
-      border-radius: 50%;
-      cursor: pointer;
-      box-shadow: 0 10px 18px rgba(0, 0, 0, 0.35);
-      font-size: 1.1rem;
-    }
-    .carrow:hover {
-      box-shadow: 0 15px 28px rgba(0, 0, 0, 0.6);
-    }
-    #prev {
-      left: -45px;
-    }
-    #next {
-      right: -45px;
-    }
-
-    .dots {
-  display: flex;
-  justify-content: center;
-  margin-top: 10px;
-  gap: 12px;
-}
-
-.dot {
-  width: 10px;
-  height: 10px;
-  background-color: #ccc;
-  border-radius: 50%;
-  cursor: pointer;
-  transition: background-color 0.3s;
-}
-
-.dot.active {
-  background-color: #222c72;
-}
-
-
-
-
-    footer {
-      position: fixed;
-      bottom: 20px;
-      left: 0;
-      right: 0;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-    }
-    .footer-btn {
-      position: absolute;
-
-      transition: transform 0.2s ease;
-      padding: 10px 16px;
-      min-width: 130px;
-      font-size: 13px;
-      font-weight: 600;
-    }
-    .footer-btn:hover {
-      transform: translateY(-2px);
-    }
-    footer .left.footer-btn {
-      left: 20px;
-      top: -4px;
-    }
-    footer .right.footer-btn {
-      right: 20px;
-      top: -4px;
-    }
-    .social-footer {
-      display: flex;
-      justify-content: center;
-      gap: 18px;
-      margin: 0 100px;
-    }
-    .social-icon {
-      font-size: 26px;
-      color: var(--mustard);
-      cursor: pointer;
-      transition: color 0.3s, transform 0.2s ease;
-    }
-    .social-icon:hover {
-      color: var(--navy);
-      transform: scale(1.2);
-    }
-    .social-footer {
-      display: flex;
-      gap: 18px;
-      margin: 0 80px;
-      justify-content: center;
-    }
-
-    .help-centre {
-      color: #222c72;
-      font-weight: 650;
-      font-size: 16px;
-      text-align: left;
-      margin-top: -9px;
-    }
-
-    .divider {
-      width: 100%;
-      max-width: 560px;
-      text-align: center;
-      border-bottom: 2px solid rgba(0, 0, 0, 0.04);
-      line-height: 0.1em;
-      margin: 20px auto 12px;
-    }
-
-    .divider span {
-      background: var(--bg);
-      padding: 0 10px;
-      color: #283075;
-      font-weight: 600;
-      font-size: 10px;
-      letter-spacing: 0.5px;
-    }
-
-
-/* Shortcuts */
-.shortcuts-wrapper {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 15px;
-  width: 100%;
-  max-width: 660px;
-  margin-top: 0px;
-  margin-bottom: 10px;
-}
-.shortcut-item {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 5px;
-  cursor: pointer;
-  position: relative;
-  transition: transform 0.2s;
-}
-.shortcut-item:hover {
-  transform: scale(1.05);
-}
-.shortcut-icon {
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
-  background: #fff;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  box-shadow: 0 4px 10px rgba(34,44,114,0.1);
-  border: 1px solid rgba(34,44,114,0.1);
-  overflow: hidden;
-}
-.shortcut-icon img {
-  width: 20px;
-  height: 20px;
-  object-fit: contain;
-}
-.shortcut-item p {
-  font-size: 0.65rem;
-  color: var(--navy);
-  margin: 0;
-  max-width: 50px;
-  text-align: center;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-}
-.add-shortcut-btn {
-  background: rgba(34,44,114,0.05);
-  color: var(--navy);
-  font-size: 1.1rem;
-}
-.remove-shortcut {
-  position: absolute;
-  top: -5px;
-  right: -5px;
-  width: 16px;
-  height: 16px;
-  background: #dc3545;
-  color: white;
-  border-radius: 50%;
-  border: none;
-  font-size: 0.6rem;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-  opacity: 0;
-  transition: opacity 0.2s;
-}
-.shortcut-item:hover .remove-shortcut {
-  opacity: 1;
-}
-
-/* More app */
-    .more-row {
-  display: flex;
-  justify-content: center;
-  gap: 20px;
-  margin-top: 5px;
-}
-
-.more-button {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  gap: 6px;
-  cursor: pointer;
-  transition: transform 0.2s;
-}
-
-.more-button img {
-  width: 16px;
-  height: 16px;
-}
-
-.more-button p {
-  margin-top: 0;
-  font-size: 0.5rem;
-  color: var(--navy);
-  font-weight: 500;
-}
-
-.more-button:hover {
-  transform: scale(1.05);
-}
-
-
-
-
-  /* responsive adjustments */
-  @media (max-width: 480px) {
-    .time-box {
-      width: 60px;
-      height: 60px;
-      font-size: 32px;
-      border-radius: 10px;
-    }
-    .logo {
-      width: 45px;
-      height: 45px;
-    }
-    .header-row h1 {
-      font-size: 16px;
-    }
-    .portal-btn {
-      padding: 5px 12px;
-      font-size: 12px;
-    }
-    .corner-btn {
-      padding: 6px 10px;
-      font-size: 12px;
-    }
-    .search-container {
-      max-width: 100%;
-      height: 44px;
-      padding: 3px 12px;
-      margin-bottom: 16px;
-    }
-    .search-container .icon-btn,
-    .ai-mode-btn {
-      width: 36px;
-      height: 36px;
-    }
-    .date-location-row {
-      flex-direction: column;
-      gap: 4px;
-      font-size: 11px;
-    }
-    .location-temp-row {
-      gap: 6px;
-      flex-wrap: wrap;
-    }
-    .date-box, .location-box, .temperature {
-      font-size: 9px;
-    }
-    .help-row {
-      flex-wrap: wrap;
-      gap: 10px;
-      justify-content: space-between;
-      width: 100%;
-    }
-    .help-card {
-      flex: 1 1 120px;
-      min-width: 100px;
-      max-width: 150px;
-      min-height: 100px;
-      padding: 10px 8px;
-      border-radius: 12px;
-      box-shadow: 0 8px 14px rgba(12, 20, 44, 0.08);
-    }
-    .help-card img {
-      width: 30px;
-      height: 30px;
-      filter: drop-shadow(0 4px 12px rgba(0,0,0,0.16)) sepia(0.7) saturate(2.5) hue-rotate(-10deg);
-    }
-    .help-card p {
-      font-size: 0.65rem;
-      font-weight: 400;
-    }
-    .more-row {
-      gap: 12px;
-      flex-wrap: wrap;
-    }
-    .more-button img {
-      width: 14px;
-      height: 14px;
-    }
-    .more-button p {
-      font-size: 0.45rem;
-    }
-    .portal-row {
-      justify-content: space-around;
-      gap: 6px;
-    }
-    .portal-btn {
-      min-width: 90px;
-      padding: 0 12px;
-      font-size: 12px;
-    }
-    .carousel-container {
-      max-width: 280px;
-    }
-  }
-
-  </style>
   <body>
-
-    <button class="corner-btn left" id="todoBtn">ToDo List</button>
-
-     <!-- Google Apps Button -->
-<button class="corner-btn right" id="googleBtn" aria-label="Google Apps" title="Google Apps">
-  <span>Google Apps</span>
-</button>
-
-<!-- Popup Modal -->
-<div id="googleModal" class="modal">
-  <div class="modal-content">
-    <div class="modal-header">
-      <h3>Google Apps</h3>
-      <button id="closeBtn" class="modal-close" aria-label="Close Google Apps modal">&times;</button>
-    </div>
-    <div class="app-grid">
-
-
-
-
-      <div class="app-item" onclick="openApp('https://myaccount.google.com')">
-        <img src="Assets/Google Icone/Cloudidentity.png" alt="Account" />
-        <p>Account</p>
-      </div>
-
-
-
-
-      <div class="app-item" onclick="openApp('https://www.blogger.com')">
-        <img src="Assets/Google Icone/Blogger.png" alt="Blogger" />
-        <p>Blogger</p>
-      </div>
-
-      <div class="app-item" onclick="openApp('https://www.google.com')">
-        <img src="Assets/Google Icone/Search.png" alt="Search" />
-        <p>Search </p>
-      </div>
-
-
-      <div class="app-item" onclick="openApp('https://www.youtube.com/')">
-        <img src="Assets/Google Icone/Youtube.png" alt="YouTube" />
-        <p>YouTube</p>
-      </div>
-
-
-
-      <div class="app-item" onclick="openApp('https://keep.google.com/')">
-        <img src="Assets/Google Icone/Keep.png" alt="keep" />
-        <p>Keep</p>
-      </div>
-
-
-      <div class="app-item" onclick="openApp('https://meet.google.com/')">
-        <img src="Assets/Google Icone/Meet.png" alt="Meeting" />
-        <p>Meeting</p>
-      </div>
-
-
-      <div class="app-item" onclick="openApp('https://www.google.com/maps')">
-        <img src="Assets/Google Icone/Maps.png" alt="Maps" />
-        <p>Maps</p>
-      </div>
-
-
-      <div class="app-item" onclick="openApp('https://gemini.google.com/')">
-        <img src="Assets/Google Icone/Gemini.png" alt="Gemini" />
-        <p>Gemini</p>
-      </div>
-
-
-      <div class="app-item" onclick="openApp('https://news.google.com/')">
-        <img src="Assets/Google Icone/News.png" alt="News" />
-        <p>News</p>
-      </div>
-
-
-      <div class="app-item" onclick="openApp('https://mail.google.com/')">
-        <img src="Assets/Google Icone/gmail-icon.png" alt="Mail" />
-        <p>Mail</p>
-      </div>
-
-
-      <div class="app-item" onclick="openApp('https://mail.google.com/chat')">
-        <img src="Assets/Google Icone/Chat.png" alt="Chat" />
-        <p>Chat</p>
-      </div>
-
-
-      <div class="app-item" onclick="openApp('https://contacts.google.com/')">
-        <img src="Assets/Google Icone/Contacts.png" alt="Contacts" />
-        <p>Contacts</p>
-      </div>
-
-
-      <div class="app-item" onclick="openApp('https://drive.google.com/')">
-        <img src="Assets/Google Icone/Drive.png" alt="Drive" />
-        <p>Drive</p>
-      </div>
-
-
-      <div class="app-item" onclick="openApp('https://calendar.google.com/')">
-        <img src="Assets/Google Icone/Calender.png" alt="Calendar" />
-        <p>Calendar</p>
-      </div>
-
-
-      <div class="app-item" onclick="openApp('https://play.google.com/')">
-        <img src="Assets/Google Icone/Playstore.png" alt="Play" />
-        <p>Play</p>
-      </div>
-
-
-      <div class="app-item" onclick="openApp('https://translate.google.com/')">
-        <img src="Assets/Google Icone/google-translate-icon.png" alt="Translate" />
-        <p>Translate</p>
-      </div>
-
-
-      <div class="app-item" onclick="openApp('https://photos.google.com/')">
-        <img src="Assets/Google Icone/Photo.png" alt="Photos" />
-        <p>Photos</p>
-      </div>
-
-
-      <div class="app-item" onclick="openApp('https://myadcenter.google.com/')">
-        <img src="Assets/Google Icone/MyAdCenter.png" alt="Myadcenter" />
-        <p>Myadcenter</p>
-      </div>
-
-
-      <div class="app-item" onclick="openApp('https://www.google.com/shopping')">
-        <img src="Assets/Google Icone/Shopping.png" alt="Shopping" />
-        <p>Shopping</p>
-      </div>
-
-
-      <div class="app-item" onclick="openApp('https://docs.google.com/videos')">
-        <img src="Assets/Google Icone/google-vids-icon.png" alt="Vid" />
-        <p>Vid</p>
-      </div>
-
-
-      <div class="app-item" onclick="openApp('https://www.google.com/finance')">
-        <img src="Assets/Google Icone/Finance.png" alt="Finance" />
-        <p>Finance</p>
-      </div>
-
-
-      <div class="app-item" onclick="openApp('https://docs.google.com/document')">
-        <img src="Assets/Google Icone/Docs.png" alt="Docs" />
-        <p>Docs</p>
-      </div>
-
-
-
-      <div class="app-item" onclick="openApp('https://docs.google.com/spreadsheets')">
-        <img src="Assets/Google Icone/Sheets.png" alt="Sheets" />
-        <p>Sheets</p>
-      </div>
-
-
-
-      <div class="app-item" onclick="openApp('https://docs.google.com/presentation')">
-        <img src="Assets/Google Icone/Slides.png" alt="Slides" />
-        <p>Slides</p>
-      </div>
-
-
-
-      <div class="app-item" onclick="openApp('https://books.google.com')">
-        <img src="Assets/Google Icone/Books.png" alt="Books" />
-        <p>Books</p>
-      </div>
-
-
-
-      <div class="app-item" onclick="openApp('https://classroom.google.com')">
-        <img src="Assets/Google Icone/Classroom.png" alt="Classroom" />
-        <p>Classroom</p>
-      </div>
-
-
-
-      <div class="app-item" onclick="openApp('https://earth.google.com')">
-        <img src="Assets/Google Icone/Earth.png" alt="Earth" />
-        <p>Earth</p>
-      </div>
-
-
-
-      <div class="app-item" onclick="openApp('https://www.google.com/interests/saved')">
-        <img src="Assets/Google Icone/Saved.png" alt="Saved" />
-        <p>Saved</p>
-      </div>
-
-
-
-      <div class="app-item" onclick="openApp('https://artsandculture.google.com/')">
-        <img src="Assets/Google Icone/ArtsandCulture.png" alt="Arts and Culture" />
-        <p>Arts and Culture</p>
-      </div>
-
-
-
-      <div class="app-item" onclick="openApp('https://ads.google.com/')">
-        <img src="Assets/Google Icone/GoogleAds.png" alt="Google Ads" />
-        <p>Google Ads</p>
-      </div>
-
-
-
-      <div class="app-item" onclick="openApp('https://www.google.com/')">
-        <img src="Assets/Google Icone/MerchantCenter.png" alt="Merchant Center" />
-        <p>Merchant Center</p>
-      </div>
-
-
-
-      <div class="app-item" onclick="openApp('https://one.google.com/')">
-        <img src="Assets/Google Icone/GoogleOne.png" alt="Google One " />
-        <p>Google One</p>
-      </div>
-
-
-
-      <div class="app-item" onclick="openApp('https://www.google.com/travel')">
-        <img src="Assets/Google Icone/Travel.png" alt="Travel" />
-        <p>Travel</p>
-      </div>
-
-
-
-      <div class="app-item" onclick="openApp('https://docs.google.com/forms')">
-        <img src="Assets/Google Icone/Docs.png" alt="Forms" />
-        <p>Forms</p>
-      </div>
-
-
-
-        
-      <div class="app-item" onclick="openApp('https://chromewebstore.google.com/')">
-        <img src="Assets/Google Icone/Chromewebstore.png" alt="Chrome Web Store" />
-        <p>Chrome Web Store</p>
-      </div>
-
-<div class="app-item" onclick="openApp('https://passwords.google.com/')">
-        <img src="Assets/Google Icone/Passwaord.png" alt="Passwords Manager " />
-        <p>Passwords Manager </p>
-      </div>
-
-
-
-      <div class="app-item" onclick="openApp('https://analytics.google.com/analytics/web/provision')">
-        <img src="Assets/Google Icone/Analytics.png" alt="Google Analytics " />
-        <p>Google Analytics </p>
-      </div>
-
-
-
-      <div class="app-item" onclick="openApp('https://wallet.google.com/')">
-        <img src="Assets/Google Icone/Wallet.png" alt="Wallet" />
-        <p>Wallet </p>
-      </div>
-      <div class="app-item" onclick="openApp('https://notebooklm.google.com/')">
-        <img src="Assets/Google Icone/Notebook.png" alt="Notebook LM " />
-        <p>Notebook LM </p>
-      </div>
-      <div class="app-item" onclick="openApp('https://tasks.google.com/')">
-        <img src="Assets/Google Icone/Task.png" alt="Tasks " />
-        <p>Tasks </p>
-      </div>
-        
-    </div>
+   <div class="app-shell">
+
+<div class="wallpaper-layer" id="wallpaperLayer"></div>
+
+<div class="wallpaper-panel" id="wallpaperPanel">
+  <span class="wallpaper-panel-title">Background Wallpaper</span>
+  <label class="wallpaper-upload-btn" for="wallpaperFileInput">
+    <i class="fa-solid fa-upload"></i> Choose Image
+  </label>
+  <input type="file" id="wallpaperFileInput" accept="image/*" hidden />
+  <div class="wallpaper-opacity-row">
+    <span>Opacity</span>
+    <input type="range" id="wallpaperOpacity" min="0" max="100" value="100" />
   </div>
+  <button class="wallpaper-remove-btn" id="wallpaperRemoveBtn">Remove Wallpaper</button>
 </div>
 
-<!-- AI Tools Panel -->
-<aside id="aiPanel" class="ai-panel" aria-hidden="true">
-  <div class="ai-panel-header">
-    <h3>Popular AI Tools</h3>
-    <button id="aiPanelClose" class="modal-close" aria-label="Close AI Tools">&times;</button>
-  </div>
-  <p>Choose a tool to open instantly in a new tab.</p>
-  <div class="ai-panel-buttons">
-    <button class="ai-panel-btn" data-url="https://chat.openai.com/">
-      <span class="ai-icon"><i class="fa-brands fa-openai"></i></span>
-      <span>
-        <strong>ChatGPT</strong>
-        <small>OpenAI's conversational assistant</small>
-      </span>
-    </button>
-    <button class="ai-panel-btn" data-url="https://bard.google.com/">
-      <span class="ai-icon"><i class="fa-brands fa-google"></i></span>
-      <span>
-        <strong>Bard</strong>
-        <small>Google's creative ideation partner</small>
-      </span>
-    </button>
-    <button class="ai-panel-btn" data-url="https://copilot.microsoft.com/">
-      <span class="ai-icon"><i class="fa-brands fa-microsoft"></i></span>
-      <span>
-        <strong>Copilot</strong>
-        <small>Microsoft's productivity copilot</small>
-      </span>
-    </button>
-    <button class="ai-panel-btn" data-url="https://www.perplexity.ai/">
-      <span class="ai-icon"><i class="fa-solid fa-compass-drafting"></i></span>
-      <span>
-        <strong>Perplexity</strong>
-        <small>Instant answers with credible sources</small>
-      </span>
-    </button>
-    <button class="ai-panel-btn" data-url="https://claude.ai/">
-      <span class="ai-icon"><i class="fa-solid fa-lightbulb"></i></span>
-      <span>
-        <strong>Claude</strong>
-        <small>Anthropic's research companion</small>
-      </span>
-    </button>
-    <button class="ai-panel-btn" data-url="https://gemini.google.com/">
-      <span class="ai-icon"><i class="fa-solid fa-rocket"></i></span>
-      <span>
-        <strong>Gemini</strong>
-        <small>Google's fast insight engine</small>
-      </span>
-    </button>
-  </div>
-</aside>
-
-<!-- ToDo Panel -->
-<aside id="todoPanel" class="todo-panel" aria-hidden="true">
-  <div class="todo-header">
-    <h3>My Notes</h3>
-    <button id="todoPanelClose" class="modal-close" aria-label="Close ToDo Panel">&times;</button>
-  </div>
-  <form id="todoForm" class="todo-form">
-    <input type="text" id="todoInput" class="todo-input" placeholder="Enter your note..." required />
-    <input type="time" id="todoTimeInput" class="todo-time" />
-    <button type="submit" class="todo-submit">Save Note</button>
-  </form>
-  <ul id="todoList" class="todo-list"></ul>
-</aside>
-
-<!-- Add Shortcut Modal -->
-<div id="addShortcutModal" class="modal" style="display: none; position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; background: rgba(0,0,0,0.5); z-index: 2000; align-items: center; justify-content: center;">
-  <div style="background: var(--bg); padding: 20px; border-radius: 14px; width: 300px; box-shadow: 0 10px 30px rgba(0,0,0,0.3); position: relative;">
-    <h3 style="color: var(--navy); margin-bottom: 15px; margin-top:0;">Add Shortcut</h3>
-    <input type="text" id="shortcutName" placeholder="Name" style="background: transparent; color: inherit; width: 100%; padding: 10px; margin-bottom: 10px; border-radius: 8px; border: 1px solid rgba(150,150,150,0.5);" autocomplete="off" />
-    <input type="url" id="shortcutUrl" placeholder="URL (e.g. https://...)" style="background: transparent; color: inherit; width: 100%; padding: 10px; margin-bottom: 15px; border-radius: 8px; border: 1px solid rgba(150,150,150,0.5);" autocomplete="off" />
-    <div style="display: flex; justify-content: flex-end; gap: 10px;">
-      <button id="cancelShortcutBtn" style="padding: 8px 12px; background: none; border: none; color: inherit; cursor: pointer; font-weight: 500;">Cancel</button>
-      <button id="saveShortcutBtn" style="padding: 8px 12px; background: var(--navy); color: white; border: none; border-radius: 8px; cursor: pointer; font-weight: 600;">Save</button>
-    </div>
-  </div>
-</div>
-
-    <header>
-      <div class="header-row">
-        <img src="Assets/IUB-logo.png" alt="IUB Logo" class="logo" />
-        <h1>The Islamia University of Bahawalpur</h1>
-        <button id="themeToggleBtn" class="header-toggle-btn" aria-label="Toggle light/dark mode">
-          <i class="fa-solid fa-moon"></i>
+<!-- Top Bar -->
+    <div class="topbar" id="topbar">
+      <div class="brand">
+        <div class="crest"><img src="assets/logo.png" alt="IUB Logo" /></div>
+        <div class="brand-text">
+          Islamia University of Bahawalpur<small>Student Dashboard</small>
+        </div>
+      </div>
+      <div class="top-actions">
+        <div class="swatch-row" id="swatchRow">
+          <div
+            class="swatch active"
+            style="background: #26317a"
+            data-accent="#26317a"
+            data-accent2="#d4a94f"
+          ></div>
+          <div
+            class="swatch"
+            style="background: #0f5e4d"
+            data-accent="#0f5e4d"
+            data-accent2="#e0a458"
+          ></div>
+          <div
+            class="swatch"
+            style="background: #5e1f4a"
+            data-accent="#5e1f4a"
+            data-accent2="#d98a9c"
+          ></div>
+          <div
+            class="swatch"
+            style="background: #1c3a5e"
+            data-accent="#1c3a5e"
+            data-accent2="#4fb3d9"
+          ></div>
+        </div>
+        <button class="pill-btn" id="bookmarksBtn">
+          <i class="fa-solid fa-bookmark"></i> Bookmarks
         </button>
-      </div>
-    </header>
+        <button class="pill-btn" id="todoBtn">
+          <i class="fa-solid fa-list-check"></i> To-Do
+        </button>
+        <button class="pill-btn" id="aiToolsBtn">
+          <i class="fa-solid fa-robot"></i> AI Tools
+        </button>
+        <div class="icon-toggle" id="themeToggle">
+          <i class="fa-solid fa-moon" id="themeIcon"></i>
+        </div>
 
-    <div class="main">
-      <section class="left-section">
-        <div class="time-section">
-          <div class="time-row">
-            <div class="time-box" id="hours">00</div>
-            <div class="time-box" id="minutes">00</div>
-            <div class="time-box" id="seconds">00</div>
-          </div>
-          <div class="date-location-row">
-            <section class="date-box" id="date">Tuesday, 31 December 2024</section>
-            <div class="location-temp-row">
-              <div class="weather-item temperature">
-                <i class="fa-solid fa-temperature-half"></i>
-                <span id="tempVal">--°C</span>
-              </div>
-              <div class="location-box">
+         <div class="icon-toggle" id="wallpaperBtn" title="Background wallpaper">
+      <i class="fa-solid fa-image"></i>
+    </div>
+
+        <div class="icon-toggle" id="googleAppsBtn" title="Google Apps">
+          <i class="fa-solid fa-grip"></i>
+        </div>
+      </div>
+    </div>
+
+    <!-- Main Grid -->
+     <div class="content-center">
+    <div class="main-grid">
+      <div class="col" id="leftCol">
+        <div class="card glass-card clock-card">
+          <svg class="border-trace">
+            <rect
+              x="1"
+              y="1"
+              width="calc(100% - 2px)"
+              height="calc(100% - 2px)"
+              rx="18"
+              pathLength="100"
+            ></rect>
+          </svg>
+          <div class="clock-weather-row">
+          <div class="clock-left">
+
+        <div class="digital-clock modern-clock" id="modernClock">
+        <span class="clock-reel" data-slot="h1"></span>
+        <span class="clock-reel" data-slot="h2"></span>
+        <span class="clock-sep">:</span>
+        <span class="clock-reel" data-slot="m1"></span>
+        <span class="clock-reel" data-slot="m2"></span>
+        <span class="clock-sep">:</span>
+        <span class="clock-reel clock-reel-sec" data-slot="s1"></span>
+        <span class="clock-reel clock-reel-sec" data-slot="s2"></span>
+        <span class="clock-ampm" id="clockAmPm">AM</span>
+      </div>
+              <div class="clock-date" id="clockDate"></div>
+              <div class="clock-loc" id="clockLoc">
                 <i class="fa-solid fa-location-dot"></i>
-                <span id="location">Detecting location...</span>
+                <span id="locationText">Locating...</span>
               </div>
+            </div>
+            <div class="weather-divider"></div>
+            <div
+              class="weather-right"
+              id="weatherWidget"
+              title="Click for more weather details"
+            >
+              <div class="weather-icon" id="weatherIcon">
+                <i class="fa-solid fa-cloud"></i>
+              </div>
+              <div class="weather-temp" id="weatherTemp">--&deg;</div>
+              <div class="weather-condition" id="weatherCondition">Loading</div>
+              <div class="weather-minmax" id="weatherMinMax"></div>
             </div>
           </div>
         </div>
 
-          <div class="portal-row">
-            <button class="portal-btn" id="myiubBtn">My IUB</button>
-            <button class="portal-btn" id="eportalBtn">E-Portal</button>
-            <button class="portal-btn" id="lmsBtn">LMS</button>
-          </div>
-
-          <div class="divider">
-            <span>IUB Help Centre</span>
-          </div>
-
-        <div class="help-row">
-          <div class="help-card" id="liveChat">
-            <img src="Assets/live_chat.svg" alt="Live Chat" />
-            <p>Live Chat</p>
-          </div>
-          <div class="help-card" id="announcement">
-            <img src="Assets/announsments.svg" alt="Announcements" />
-            <p>Announcements</p>
-          </div>
-          <div class="help-card" id="contact">
-            <img src="Assets/phone_email.svg" alt="Contact" />
-            <p>Contact No#</p>
-          </div>
+        <div class="card glass-card greeting">
+          <svg class="border-trace">
+            <rect
+              x="1"
+              y="1"
+              width="calc(100% - 2px)"
+              height="calc(100% - 2px)"
+              rx="18"
+              pathLength="100"
+            ></rect>
+          </svg>
+          <h1 id="greetingText">Hello!</h1>
+          <p>Here's everything you need for today.</p>
         </div>
-      </section>
 
+        <div class="quote-standalone">
+          <p class="quote-text" id="quoteText"></p>
+          <p class="quote-author" id="quoteAuthor"></p>
+        </div>
+      </div>
 
-
-
-      <!-- Right said -->
-
-      <section class="right-section">
-
-
-
-
-        <!-- Serchbar -->
-
-
-        <div class="search-container">
-          <button type="button" id="cameraBtn" class="icon-btn" aria-label="Camera search">
-            <i class="fa-solid fa-camera"></i>
+      <div class="col" id="rightCol">
+        <div class="search-bar">
+          <button class="engine-btn" id="engineBtn">
+            <i class="fa-brands fa-google" id="engineIcon"></i>
+            <span id="engineLabel">Google</span>
+            <i class="fa-solid fa-chevron-down" style="font-size: 0.6rem"></i>
           </button>
+          <div class="engine-dropdown" id="engineDropdown">
+            <div
+              class="engine-option"
+              data-engine="Google"
+              data-icon="fa-brands fa-google"
+              data-url="https://www.google.com/search?q="
+            >
+              <i class="fa-brands fa-google"></i> Google
+            </div>
+            <div
+              class="engine-option"
+              data-engine="Bing"
+              data-icon="fa-brands fa-microsoft"
+              data-url="https://www.bing.com/search?q="
+            >
+              <i class="fa-brands fa-microsoft"></i> Bing
+            </div>
+            <div
+              class="engine-option"
+              data-engine="DuckDuckGo"
+              data-icon="fa-solid fa-shield-halved"
+              data-url="https://duckduckgo.com/?q="
+            >
+              <i class="fa-solid fa-shield-halved"></i> DuckDuckGo
+            </div>
+            <div
+              class="engine-option"
+              data-engine="Yahoo"
+              data-icon="fa-brands fa-yahoo"
+              data-url="https://search.yahoo.com/search?p="
+            >
+              <i class="fa-brands fa-yahoo"></i> Yahoo
+            </div>
+          </div>
+          <i class="fa-solid fa-magnifying-glass lead"></i>
           <input
             type="text"
             id="searchInput"
             placeholder="Search anything here..."
+            autocomplete="off"
           />
-          <div class="search-actions">
-            <button type="button" id="voiceBtn" class="icon-btn" aria-label="Voice search">
-              <i class="fa-solid fa-microphone"></i>
-            </button>
-            <button type="button" id="searchBtn" class="icon-btn accent" aria-label="Submit search">
-              <i class="fa-solid fa-magnifying-glass"></i>
-            </button>
-            <button type="button" id="aiModeBtn" class="ai-mode-btn" aria-label="AI mode">
-              <i class="fa-solid fa-robot"></i>
-            </button>
+          <button id="voiceBtn" class="voice-btn" aria-label="Voice search">
+            <i class="fa-solid fa-microphone"></i>
+          </button>
+          <button id="searchBtn">Search</button>
+        </div>
+
+        <div class="portal-row">
+          <button class="portal-btn" id="myIubBtn">
+            <i class="fa-solid fa-user"></i>My IUB
+          </button>
+          <button class="portal-btn" id="eportalBtn">
+            <i class="fa-solid fa-graduation-cap"></i>E-Portal
+          </button>
+          <button class="portal-btn" id="lmsBtn">
+            <i class="fa-solid fa-book"></i>LMS
+          </button>
+        </div>
+
+        <div class="divider">IUB Help Centre</div>
+
+        <div class="help-row">
+          <div class="help-card" id="liveChatBtn">
+            <i class="fa-solid fa-comments"></i>
+            <p>Live Chat</p>
+          </div>
+          <div class="help-card" id="announcementBtn">
+            <i class="fa-solid fa-bullhorn"></i>
+            <p>Announcements</p>
+          </div>
+          <div class="help-card" id="contactBtn">
+            <i class="fa-solid fa-phone"></i>
+            <p>Contact No#</p>
           </div>
         </div>
 
-        <!-- Shortcuts Container -->
-        <div class="shortcuts-wrapper" id="shortcutsWrapper"></div>
+        <div class="bottom-row">
+          <div class="slider-wrap">
+            <button
+              class="slide-arrow slide-arrow-left"
+              id="slidePrev"
+              aria-label="Previous slide"
+            >
+              &#8249;
+            </button>
+            <div class="card slider-card" id="sliderCard">
+              <a id="slideLink" href="#" target="_self">
+                <img id="slideImg" src="" alt="IUB announcement" />
+              </a>
+              <div class="slide-dots" id="slideDots"></div>
+            </div>
+            <button
+              class="slide-arrow slide-arrow-right"
+              id="slideNext"
+              aria-label="Next slide"
+            >
+              &#8250;
+            </button>
+          </div>
+          <div class="card shortcuts-card">
+            <div class="shortcuts-icons" id="shortcutsIcons"></div>
+          </div>
+        </div>
 
-        <!-- sliders dot -->
-        <div class="carousel-container">
-  <button class="carrow" id="prev">‹</button>
-  <img id="slide" src="Assets/fee_structure_ads.jpg" alt="Slide" />
-  <button class="carrow" id="next">›</button>
-  <div class="dots" id="dots"></div>
-</div>
-
-
-
-
-           <!-- More app -->
-        <div class="divider">
-  <span>More App</span>
-</div>
-<div class="more-row">
-<div class="more-button" onclick="window.open('https://chromewebstore.google.com/search/iub', '_self')">
-    <img src="Assets/charome.png" alt="Extension" />
-    <p>Extension</p>
-  </div>
-  <div class="more-button" onclick="window.open('https://apps.microsoft.com/detail/9pl653tpwdch?hl=en-US&gl=PK', '_self')">
-    <img src="Assets/softwaer.png" alt="Software" />
-    <p>Software</p>
-  </div>
-  <div class="more-button" onclick="window.open('https://play.google.com/store/apps/details?id=com.AdeebTechLab.IUBportals', '_self')">
-    <img src="Assets/app.png" alt="Mobile App" />
-    <p>Mobile App</p>
-  </div>
-</div>
-
-
-
-
-      </section>
-
-
-
-
-
-
-<!-- Foter -->
-
-    <footer>
-      <button class="corner-btn left footer-btn" id="aiBtn">AI Tools</button>
-      <div class="social-footer">
-        <a href="https://www.facebook.com/iubwp"
-          ><i class="fa-brands fa-facebook social-icon"></i
+        <div class="divider">More Apps</div>
+        <div class="more-apps-row">
+          <a
+            class="more-app-btn"
+            href="https://play.google.com/store/apps/details?id=com.AdeebTechLab.IUBportals"
+            target="_self"
+            ><i class="fa-solid fa-mobile-screen"></i> Mobile</a
+          >
+          <a
+            class="more-app-btn"
+            href="https://chromewebstore.google.com/search/iub"
+            target="_self"
+            ><i class="fa-brands fa-chrome"></i> Extension</a
+          >
+          <a
+            class="more-app-btn"
+            href="https://apps.microsoft.com/detail/9pl653tpwdch?hl=en-US&gl=PK"
+            target="_self"
+            ><i class="fa-solid fa-desktop"></i> Software</a
+          >
+        </div>
+      </div>
+    </div>
+   </div>
+   </div>
+<!-- Social Footer -->
+    <div class="global-footer">
+      <span class="social-label">Connect with IUB</span>
+      <div class="social-pills">
+        <a
+          class="social-pill"
+          href="https://www.facebook.com/iubwp"
+          target="_self"
+          ><i class="fa-brands fa-facebook"></i
         ></a>
-        <a href="https://x.com/theiubwp"
-          ><i class="fa-brands fa-x-twitter social-icon"></i
+        <a class="social-pill" href="https://x.com/theiubwp" target="_self"
+          ><i class="fa-brands fa-x-twitter"></i
         ></a>
-        <a href="https://www.instagram.com/theiubwp"
-          ><i class="fa-brands fa-instagram social-icon"></i
+        <a
+          class="social-pill"
+          href="https://www.instagram.com/theiubwp"
+          target="_self"
+          ><i class="fa-brands fa-instagram"></i
         ></a>
-        <a href="https://www.linkedin.com/school/the-islamia-university-of-bahawalpur/posts/?feedView=all"
-          ><i class="fa-brands fa-linkedin social-icon"></i
+        <a
+          class="social-pill"
+          href="https://www.linkedin.com/school/the-islamia-university-of-bahawalpur/posts/?feedView=all"
+          target="_self"
+          ><i class="fa-brands fa-linkedin"></i
         ></a>
-        <a href="https://www.youtube.com/channel/UCaB7NBp3x31nVU2VoLS1a1Q"
-          ><i class="fa-brands fa-youtube social-icon"></i
+        <a
+          class="social-pill"
+          href="https://www.youtube.com/channel/UCaB7NBp3x31nVU2VoLS1a1Q"
+          target="_self"
+          ><i class="fa-brands fa-youtube"></i
         ></a>
-        <a href="https://www.whatsapp.com/channel/0029VaCyEBo3mFYBt94MvG18"
-          ><i class="fa-brands fa-whatsapp social-icon"></i
+        <a
+          class="social-pill"
+          href="https://www.whatsapp.com/channel/0029VaCyEBo3mFYBt94MvG18"
+          target="_self"
+          ><i class="fa-brands fa-whatsapp"></i
         ></a>
       </div>
-      <button class="corner-btn right footer-btn" id="bookmarkBtn">
-        Bookmarks
-      </button>
-    </footer>
+    </div>
+
+    <!-- Name Capture Modal -->
+    <div class="modal-overlay" id="nameModal">
+      <div class="modal-box">
+        <h3>What's your name?</h3>
+        <p>We'll greet you personally every time you open a new tab.</p>
+        <input
+          type="text"
+          id="nameInput"
+          placeholder="Your Good Name..."
+          maxlength="20"
+        />
+        <button id="saveNameBtn">Save</button>
+      </div>
+    </div>
+
+    <!-- Bookmarks Panel -->
+    <div class="side-panel" id="bookmarksPanel">
+      <div class="panel-header">
+        <h3>Bookmarks</h3>
+        <button class="panel-close" id="bookmarksClose">&times;</button>
+      </div>
+      <form id="bookmarkForm" class="panel-form">
+        <input
+          type="text"
+          id="bookmarkName"
+          placeholder="Specific link name (e.g. CS-301 Course Page)"
+          required
+        />
+        <input
+          type="url"
+          id="bookmarkUrl"
+          placeholder="Direct URL (not homepage)"
+          required
+        />
+        <textarea
+          id="bookmarkNote"
+          placeholder="Why you saved this"
+          rows="2"
+        ></textarea>
+        <select id="bookmarkCategory">
+          <option value="Academic">Academic</option>
+          <option value="Study">Study</option>
+          <option value="Social">Social</option>
+          <option value="Other">Other</option>
+        </select>
+        <button type="submit" class="panel-submit">Save Bookmark</button>
+      </form>
+      <div id="bookmarksList" class="panel-list"></div>
+    </div>
+
+    <!-- AI Tools Panel -->
+<div class="side-panel" id="aiToolsPanel">
+  <div class="panel-header">
+    <h3>AI Tools</h3>
+    <button class="panel-close" id="aiToolsClose">&times;</button>
+  </div>
+  <div class="ai-tools-grid" id="aiToolsGrid"></div>
+</div>
+
+    <!-- Google Apps Panel -->
+    <div class="side-panel" id="googleAppsPanel">
+      <div class="panel-header">
+        <h3>Google Apps</h3>
+        <button class="panel-close" id="googleAppsClose">&times;</button>
+      </div>
+
+      <div class="google-apps-grid" id="googleAppsGrid"></div>
+      
+    </div>
+
+    <!-- To-Do Panel -->
+    <div class="side-panel panel-left" id="todoPanel">
+      <div class="panel-header">
+        <h3>My Notes</h3>
+        <button class="panel-close" id="todoClose">&times;</button>
+      </div>
+      <form id="todoForm" class="panel-form">
+        <input
+          type="text"
+          id="todoInput"
+          placeholder="Enter your note..."
+          required
+        />
+        <input type="time" id="todoTimeInput" />
+        <button type="submit" class="panel-submit">Save Note</button>
+      </form>
+      <div id="todoList" class="panel-list"></div>
+    </div>
 
     <script src="script.js"></script>
   </body>
